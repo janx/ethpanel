@@ -1,7 +1,7 @@
 var AppConstants = require('../constants/AppConstants');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 
-var MyEthActions = {
+var EthPanelActions = {
 
   ethServiceUpdate: function(data) {
     AppDispatcher.dispatch({
@@ -12,4 +12,4 @@ var MyEthActions = {
 
 };
 
-module.exports = MyEthActions;
+module.exports = EthPanelActions;

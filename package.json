@@ -1,8 +1,8 @@
 {
-  "name": "myeth",
-  "version": "0.0.1",
+  "name": "ethpanel",
+  "version": "0.0.2",
   "description": "A friendly web interface to ethereum node.",
-  "repository": "https://github.com/janx/myeth",
+  "repository": "https://github.com/janx/ethpanel",
   "main": "js/app.js",
   "dependencies": {
     "flux": "^2.0.3",

@@ -1,4 +1,4 @@
-# MyEth
+# EthPanel
 
 A friendly web interface to my ethereum node.
 

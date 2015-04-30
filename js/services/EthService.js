@@ -1,5 +1,5 @@
 var assign = require('object-assign');
-var MyEthActions = require('../actions/MyEthActions');
+var EthPanelActions = require('../actions/EthPanelActions');
 
 function EthService(url, options) {
   this.options = assign({
@@ -53,7 +53,7 @@ assign(EthService.prototype, {
     this.updateMyAccounts();
     this.updateMining();
 
-    MyEthActions.ethServiceUpdate({
+    EthPanelActions.ethServiceUpdate({
       lastNumber: this.lastNumber,
       blocks:     this.blocks,
       netStats:   this.netStats,

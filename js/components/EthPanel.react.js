@@ -18,7 +18,7 @@ var AccountStore = require('../stores/AccountStore');
 /*
  * Top controller-view
  */
-var MyEthApp = React.createClass({
+var EthPanel = React.createClass({
 
   getInitialState: function() {
     return {
@@ -73,4 +73,4 @@ var MyEthApp = React.createClass({
 
 })
 
-module.exports = MyEthApp;
+module.exports = EthPanel;

@@ -19,7 +19,6 @@ var Blocks = React.createClass({
     var items = [];
     var blocks = this.props.blocks.slice(0, this.props.limit);
 
-    console.log(this.props);
     blocks.forEach(function(block) {
       items.push(<BlockItem key={block.number} {...block} />)
     });

@@ -8,6 +8,14 @@ var MyEthActions = {
       actionType: AppConstants.MYETH_SETUP_BLOCKS,
       blocks: blocks
     });
+  },
+
+  newBlock: function(block) {
+    console.log(block);
+    AppDispatcher.dispatch({
+      actionType: AppConstants.MYETH_NEW_BLOCK,
+      block: block
+    });
   }
 
 };

@@ -28,6 +28,13 @@ assign(EthService.prototype, {
     };
   },
 
+  getMyAccounts: function() {
+    return {
+      default: this.web3.eth.defaultAccount,
+      coinbase: this.web3.eth.coinbase
+    };
+  },
+
   start: function() {
     var number = this.getNumber();
 
@@ -37,10 +44,12 @@ assign(EthService.prototype, {
     }
 
     MyEthActions.setupBlocks(this.blocks);
-    this._updateNetStats();
+    this.updateNetStats();
+    this.updateMyAccounts();
 
-    this.watchers.blocks = window.setInterval(this._checkNewBlock.bind(this), 2000);
-    this.watchers.netStats = window.setInterval(this._updateNetStats.bind(this), 10000);
+    this.watchers.blocks = window.setInterval(this.checkNewBlock.bind(this), 2000);
+    this.watchers.netStats = window.setInterval(this.updateNetStats.bind(this), 10000);
+    this.watchers.myAccounts = window.setInterval(this.updateMyAccounts.bind(this), 2000);
   },
 
   stop: function() {
@@ -49,7 +58,7 @@ assign(EthService.prototype, {
     }
   },
 
-  _checkNewBlock: function() {
+  checkNewBlock: function() {
     var number = this.getNumber();
     for(var i=this.blocks[0].number+1; i <= number; i++) {
       this.blocks.unshift(this.web3.eth.getBlock(i, false))
@@ -57,8 +66,12 @@ assign(EthService.prototype, {
     }
   },
 
-  _updateNetStats: function() {
+  updateNetStats: function() {
     MyEthActions.updateNetStats(this.getNetStats());
+  },
+
+  updateMyAccounts: function() {
+    MyEthActions.updateMyAccounts(this.getMyAccounts());
   }
 
 });

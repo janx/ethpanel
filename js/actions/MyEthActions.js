@@ -22,6 +22,14 @@ var MyEthActions = {
       actionType: AppConstants.MYETH_UPDATE_NET_STATS,
       stats: stats
     });
+  },
+
+  updateMyAccounts: function(accounts) {
+    console.log(accounts);
+    AppDispatcher.dispatch({
+      actionType: AppConstants.MYETH_UPDATE_MY_ACCOUNTS,
+      accounts: accounts
+    });
   }
 
 };

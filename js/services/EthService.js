@@ -37,7 +37,7 @@ assign(EthService.prototype, {
     }
 
     MyEthActions.setupBlocks(this.blocks);
-    //MyEthActions.setupNetStats(this.getNetStats());
+    MyEthActions.setupNetStats(this.getNetStats());
 
     this.watchers['blocks'] = window.setInterval(this._onNewBlock.bind(this), 2000);
   },

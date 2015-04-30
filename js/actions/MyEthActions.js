@@ -10,6 +10,13 @@ var MyEthActions = {
     });
   },
 
+  setupNetStats: function(stats) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.MYETH_UPDATE_NET_STATS,
+      stats: stats
+    });
+  },
+
   newBlock: function(block) {
     AppDispatcher.dispatch({
       actionType: AppConstants.MYETH_NEW_BLOCK,

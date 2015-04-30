@@ -37,9 +37,10 @@ assign(EthService.prototype, {
     }
 
     MyEthActions.setupBlocks(this.blocks);
-    MyEthActions.setupNetStats(this.getNetStats());
+    this._updateNetStats();
 
-    this.watchers['blocks'] = window.setInterval(this._onNewBlock.bind(this), 2000);
+    this.watchers.blocks = window.setInterval(this._checkNewBlock.bind(this), 2000);
+    this.watchers.netStats = window.setInterval(this._updateNetStats.bind(this), 10000);
   },
 
   stop: function() {
@@ -48,13 +49,18 @@ assign(EthService.prototype, {
     }
   },
 
-  _onNewBlock: function() {
+  _checkNewBlock: function() {
     var number = this.getNumber();
     for(var i=this.blocks[0].number+1; i <= number; i++) {
       this.blocks.unshift(this.web3.eth.getBlock(i, false))
       MyEthActions.newBlock(this.blocks[0]);
     }
+  },
+
+  _updateNetStats: function() {
+    MyEthActions.updateNetStats(this.getNetStats());
   }
+
 });
 
 module.exports = EthService;

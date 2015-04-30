@@ -1,0 +1,34 @@
+{
+  "name": "myeth",
+  "version": "0.0.1",
+  "description": "A friendly web interface to ethereum node.",
+  "repository": "https://github.com/janx/myeth",
+  "main": "js/app.js",
+  "dependencies": {
+    "flux": "^2.0.3",
+    "react": "^0.13.2"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.8",
+    "envify": "^3.4.0",
+    "reactify": "^1.1.0",
+    "uglify-js": "~2.4.20",
+    "watchify": "^3.2.0",
+    "jest": "^0.1.39"
+  },
+  "scripts": {
+    "start": "watchify -o js/bundle.js -v -d js/app.js",
+    "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/bundle.min.js",
+    "test": "jest"
+  },
+  "author": "Jan Xie",
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  },
+  "jest": {
+    "rootDir": "./js"
+  }
+}

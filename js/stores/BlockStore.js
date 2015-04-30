@@ -33,13 +33,8 @@ var BlockStore = assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(action) {
   switch(action.actionType) {
-    case AppConstants.MYETH_SETUP_BLOCKS:
-      _blocks = action.blocks.slice(0, BlockStore.getLimit());
-      BlockStore.emitChange();
-      break;
-    case AppConstants.MYETH_NEW_BLOCK:
-      _blocks.unshift(action.block);
-      _blocks = _blocks.slice(0, BlockStore.getLimit());
+    case AppConstants.MYETH_SERVICE_UPDATE:
+      _blocks = action.data.blocks.slice(0, BlockStore.getLimit());
       BlockStore.emitChange();
       break;
     default:

@@ -5,7 +5,7 @@ var MyAccounts = React.createClass({
 
   propTypes: {
     default: PropTypes.string,
-    coinbase: PropTypes.number
+    coinbase: PropTypes.string
   },
 
   render: function() {

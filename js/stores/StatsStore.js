@@ -31,8 +31,8 @@ var StatsStore = assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(action) {
   switch(action.actionType) {
-    case AppConstants.MYETH_UPDATE_NET_STATS:
-      _stats.net = action.stats;
+    case AppConstants.MYETH_SERVICE_UPDATE:
+      _stats.net = action.data.netStats;
       StatsStore.emitChange();
       break;
     default:

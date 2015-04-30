@@ -31,8 +31,8 @@ var AccountStore = assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(action) {
   switch(action.actionType) {
-    case AppConstants.MYETH_UPDATE_MY_ACCOUNTS:
-      _accounts.my = action.accounts;
+    case AppConstants.MYETH_SERVICE_UPDATE:
+      _accounts.my = action.data.myAccounts;
       break;
     default:
       // no op

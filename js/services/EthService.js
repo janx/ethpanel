@@ -9,7 +9,7 @@ function EthService(url, options) {
   this.web3 = require('web3');
   this.web3.setProvider(new this.web3.providers.HttpProvider(url));
 
-  this.watchers = {};
+  this.pollers = {};
 }
 
 assign(EthService.prototype, {
@@ -22,56 +22,69 @@ assign(EthService.prototype, {
   },
 
   getNetStats: function() {
-    return {
+  },
+
+  getMyAccounts: function() {
+  },
+
+  start: function() {
+    var number = this.getNumber();
+    this.lastNumber = number - this.options.blocksLimit;
+
+    this.blocks = [];
+    this.netStats = {};
+    this.myAccounts = {};
+
+    this.slowCallback();
+    this.fastCallback();
+
+    this.pollers.slow = window.setInterval(this.slowCallback.bind(this), 10000);
+    this.pollers.fast = window.setInterval(this.fastCallback.bind(this), 2000);
+  },
+
+  stop: function() {
+    for(var name in this.pollers) {
+      window.clearInterval(this.pollers[name]);
+    }
+  },
+
+  fastCallback: function() {
+    this.updateBlocks();
+    this.updateMyAccounts();
+
+    MyEthActions.ethServiceUpdate({
+      lastNumber: this.lastNumber,
+      blocks:     this.blocks,
+      netStats:   this.netStats,
+      myAccounts: this.myAccounts
+    });
+  },
+
+  slowCallback: function() {
+    this.updateNetStats();
+  },
+
+  updateBlocks: function() {
+    var number = this.getNumber();
+    while(this.lastNumber <= number) {
+      this.blocks.unshift(this.web3.eth.getBlock(this.lastNumber, false))
+      this.lastNumber++;
+    }
+    this.blocks = this.blocks.slice(0, this.options.blocksLimit);
+  },
+
+  updateNetStats: function() {
+    this.netStats = {
       listening: this.web3.net.listening,
       peerCount: this.web3.net.peerCount
     };
   },
 
-  getMyAccounts: function() {
-    return {
+  updateMyAccounts: function() {
+    this.myAccounts = {
       default: this.web3.eth.defaultAccount,
       coinbase: this.web3.eth.coinbase
     };
-  },
-
-  start: function() {
-    var number = this.getNumber();
-
-    this.blocks = [];
-    for(var i=0; i < this.options.blocksLimit; i++) {
-      this.blocks.push( this.web3.eth.getBlock(number-i, false) );
-    }
-
-    MyEthActions.setupBlocks(this.blocks);
-    this.updateNetStats();
-    this.updateMyAccounts();
-
-    this.watchers.blocks = window.setInterval(this.checkNewBlock.bind(this), 2000);
-    this.watchers.netStats = window.setInterval(this.updateNetStats.bind(this), 10000);
-    this.watchers.myAccounts = window.setInterval(this.updateMyAccounts.bind(this), 2000);
-  },
-
-  stop: function() {
-    for(var name in this.watchers) {
-      window.clearInterval(this.watchers[name]);
-    }
-  },
-
-  checkNewBlock: function() {
-    var number = this.getNumber();
-    for(var i=this.blocks[0].number+1; i <= number; i++) {
-      this.blocks.unshift(this.web3.eth.getBlock(i, false))
-      MyEthActions.newBlock(this.blocks[0]);
-    }
-  },
-
-  updateNetStats: function() {
-    MyEthActions.updateNetStats(this.getNetStats());
-  },
-
-  updateMyAccounts: function() {
-    MyEthActions.updateMyAccounts(this.getMyAccounts());
   }
 
 });

@@ -5,6 +5,7 @@ var React = require('react');
  */
 var Blocks = require('./Blocks.react');
 var NetStats = require('./NetStats.react');
+var Mining = require('./Mining.react');
 var MyAccounts = require('./MyAccounts.react');
 
 /*
@@ -22,6 +23,7 @@ var MyEthApp = React.createClass({
   getInitialState: function() {
     return {
       netStats: StatsStore.getNetStats(),
+      mining: StatsStore.getMining(),
       myAccounts: AccountStore.getMyAccounts(),
       blocks: BlockStore.getAll()
     };
@@ -43,6 +45,7 @@ var MyEthApp = React.createClass({
     return (
       <div id='myeth'>
         <NetStats {...this.state.netStats} />
+        <Mining {...this.state.mining} />
         <MyAccounts {...this.state.myAccounts} />
         <Blocks blocks={this.state.blocks} />
       </div>
@@ -57,7 +60,8 @@ var MyEthApp = React.createClass({
 
   onStatsChange: function() {
     this.setState({
-      netStats: StatsStore.getNetStats()
+      netStats: StatsStore.getNetStats(),
+      mining: StatsStore.getMining()
     });
   },
 

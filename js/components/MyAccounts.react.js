@@ -1,11 +1,11 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
+var Utils = require('../services/UtilsService');
 
 var MyAccounts = React.createClass({
 
   propTypes: {
-    default: PropTypes.string,
-    coinbase: PropTypes.string
+    default: PropTypes.string
   },
 
   render: function() {
@@ -13,9 +13,6 @@ var MyAccounts = React.createClass({
       <div className="myAccounts">
         <div className='default'>
           <span className='name'>Default Account:</span> {this.props.default}
-        </div>
-        <div className='coinbase'>
-          <span className='name'>Coinbase:</span> {this.props.coinbase}
         </div>
       </div>
     );

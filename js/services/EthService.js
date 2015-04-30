@@ -51,11 +51,13 @@ assign(EthService.prototype, {
   fastCallback: function() {
     this.updateBlocks();
     this.updateMyAccounts();
+    this.updateMining();
 
     MyEthActions.ethServiceUpdate({
       lastNumber: this.lastNumber,
       blocks:     this.blocks,
       netStats:   this.netStats,
+      mining:     this.mining,
       myAccounts: this.myAccounts
     });
   },
@@ -82,8 +84,20 @@ assign(EthService.prototype, {
 
   updateMyAccounts: function() {
     this.myAccounts = {
-      default: this.web3.eth.defaultAccount,
-      coinbase: this.web3.eth.coinbase
+      default: this.web3.eth.defaultAccount
+    };
+  },
+
+  updateMining: function() {
+    this.mining = {
+      mining: this.web3.eth.mining,
+    };
+
+    if(this.mining.mining) {
+      assign(this.mining, {
+        coinbase: this.web3.eth.coinbase,
+        hashrate: this.web3.eth.hashrate
+      });
     };
   }
 

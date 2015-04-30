@@ -11,7 +11,6 @@ var MyEthActions = {
   },
 
   newBlock: function(block) {
-    console.log(block);
     AppDispatcher.dispatch({
       actionType: AppConstants.MYETH_NEW_BLOCK,
       block: block

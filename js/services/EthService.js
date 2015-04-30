@@ -28,20 +28,18 @@ EthService.prototype.start = function() {
 
   MyEthActions.setupBlocks(this.blocks);
 
-  var callback = function(err, result) {
-    if (err) {
-      console.log("Block Watcher Error:", err);
-    } else {
-      var number = this.getNumber();
-      MyEthActions.newBlock(this.web3.eth.getBlock(number, false));
+  var callback = function() {
+    var number = this.getNumber();
+    for(var i=this.blocks[0].number+1; i <= number; i++) {
+      this.blocks.unshift(this.web3.eth.getBlock(i, false))
+      MyEthActions.newBlock(this.blocks[0]);
     }
   };
-  this.blockWatcher = this.web3.eth.filter("latest");
-  this.blockWatcher.watch(callback.bind(this));
+  this.watcher = window.setInterval(callback.bind(this), 2000);
 };
 
 EthService.prototype.stop = function() {
-  this.blockWatcher.stopWatching();
+  window.clearInterval(this.watcher);
 };
 
 module.exports = EthService;

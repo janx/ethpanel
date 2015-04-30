@@ -7,7 +7,8 @@ var Mining = React.createClass({
   propTypes: {
     mining: PropTypes.bool.isRequired,
     coinbase: PropTypes.string,
-    hashrate: PropTypes.number
+    hashrate: PropTypes.number,
+    fromWei: PropTypes.func
   },
 
   render: function() {
@@ -23,6 +24,9 @@ var Mining = React.createClass({
         </div>
         <div className='hashrate' style={detailStyle}>
           <span className='name'>Hashrate:</span> {this.props.hashrate} hashes/s
+        </div>
+        <div className='gasPrice' style={detailStyle}>
+          <span className='name'>Gas Price:</span> {this.props.fromWei(this.props.gasPrice, 'szabo').toString()} szabo
         </div>
       </div>
     );

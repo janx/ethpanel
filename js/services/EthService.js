@@ -90,13 +90,15 @@ assign(EthService.prototype, {
 
   updateMining: function() {
     this.mining = {
-      mining: this.web3.eth.mining,
+      fromWei: this.web3.fromWei,
+      mining: this.web3.eth.mining
     };
 
     if(this.mining.mining) {
       assign(this.mining, {
         coinbase: this.web3.eth.coinbase,
-        hashrate: this.web3.eth.hashrate
+        hashrate: this.web3.eth.hashrate,
+        gasPrice: this.web3.eth.gasPrice
       });
     };
   }

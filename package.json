@@ -9,7 +9,8 @@
     "react": "^0.13.2",
     "web3": "^0.3.4",
     "object-assign": "^2.0.0",
-    "keymirror": "0.1.1"
+    "keymirror": "^0.1.1",
+    "moment": "^2.10.2"
   },
   "devDependencies": {
     "browserify": "^9.0.8",

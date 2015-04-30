@@ -6,7 +6,7 @@ var Blocks = React.createClass({
 
   getDefaultProps: function() {
     return {
-      limit: 10
+      limit: 20
     };
   },
 
@@ -32,7 +32,7 @@ var Blocks = React.createClass({
             <tr>
               <th>Number</th>
               <th>Hash</th>
-              <th>Age</th>
+              <th>Time</th>
               <th>Transactions</th>
             </tr>
           </thead>

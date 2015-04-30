@@ -4,18 +4,29 @@ var BlockItem = require('./BlockItem.react');
 
 var Blocks = React.createClass({
 
+  getDefaultProps: function() {
+    return {
+      limit: 10
+    };
+  },
+
   propTypes: {
+    limit: PropTypes.number,
     blocks: PropTypes.array.isRequired
   },
 
   render: function() {
     var items = [];
-    this.props.blocks.forEach(function(block) {
+    var blocks = this.props.blocks.slice(0, this.props.limit);
+
+    console.log(this.props);
+    blocks.forEach(function(block) {
       items.push(<BlockItem key={block.number} {...block} />)
     });
 
     return (
       <div className="blocks">
+        <h2>Last {this.props.limit} Blocks</h2>
         <table>
           <thead>
             <tr>

@@ -17,16 +17,6 @@ assign(EthService.prototype, {
     return this.web3.eth.blockNumber;
   },
 
-  getBlocks: function() {
-    return this.blocks;
-  },
-
-  getNetStats: function() {
-  },
-
-  getMyAccounts: function() {
-  },
-
   start: function() {
     var number = this.getNumber();
     this.lastNumber = number - this.options.blocksLimit;
@@ -84,13 +74,15 @@ assign(EthService.prototype, {
 
   updateMyAccounts: function() {
     this.myAccounts = {
-      default: this.web3.eth.defaultAccount
+      default: this.web3.eth.defaultAccount,
+      accounts: this.web3.eth.accounts.map(function(addr) {
+        return {address: addr, balance: this.web3.eth.getBalance(addr)};
+      })
     };
   },
 
   updateMining: function() {
     this.mining = {
-      fromWei: this.web3.fromWei,
       mining: this.web3.eth.mining
     };
 

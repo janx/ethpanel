@@ -27,6 +27,7 @@ build/Release
 node_modules
 
 # build outputs
+build
 js/bundle.js
 
 # vim files

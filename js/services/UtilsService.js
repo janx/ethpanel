@@ -4,6 +4,10 @@ var moment = require('moment');
 var Utils = {
   fromWei: web3.fromWei,
 
+  fullHash: function(hash) {
+    return hash.slice(2);
+  },
+
   prettyHash: function(hash) {
     return hash.slice(2, 34);
   },

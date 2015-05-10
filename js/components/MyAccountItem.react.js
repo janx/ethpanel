@@ -14,7 +14,7 @@ var MyAccountItem = React.createClass({
     var classes = cx({default: (this.props.default === this.props.address)});
     return (
       <tr className={classes}>
-        <td>{Utils.prettyHash(this.props.address)}</td>
+        <td>{Utils.fullHash(this.props.address)}</td>
         <td>{Utils.fromWei(this.props.balance, 'ether').toFixed(4)}</td>
       </tr>
     );

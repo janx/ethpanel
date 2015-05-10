@@ -19,7 +19,7 @@ var Mining = React.createClass({
           <span className='name'>Mining:</span> {this.props.mining.toString()}
         </div>
         <div className='coinbase' style={detailStyle}>
-          <span className='name'>Coinbase:</span> {Utils.prettyHash(this.props.coinbase)}
+          <span className='name'>Coinbase:</span> {Utils.fullHash(this.props.coinbase)}
         </div>
         <div className='hashrate' style={detailStyle}>
           <span className='name'>Hashrate:</span> {this.props.hashrate} hashes/s

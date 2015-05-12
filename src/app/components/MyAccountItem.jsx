@@ -15,6 +15,7 @@ var MyAccountItem = React.createClass({
     return (
       <tr className={classes}>
         <td>{Utils.fullHash(this.props.address)}</td>
+        <td></td>
         <td>{Utils.fromWei(this.props.balance, 'ether').toFixed(4)}</td>
       </tr>
     );

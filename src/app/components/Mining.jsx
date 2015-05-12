@@ -17,7 +17,6 @@ var Mining = React.createClass({
 
     var items = [
       {name: 'Mining', text: this.props.mining.toString()},
-      {name: 'Coinbase', text: Utils.fullHash(this.props.coinbase)},
       {name: 'Hashrate', text: this.props.hashrate + " hashes/s"},
       {name: 'Gas Price', text: Utils.fromWei(this.props.gasPrice, 'szabo').toString() + ' szabo'}
     ];

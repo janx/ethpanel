@@ -17,6 +17,7 @@ var Card = React.createClass({
           <td className='component-info-name'>{item.name}</td>
           <td className='component-info-desc'>
             <p className='component-info-header'>
+              <span className='component-info-type'>{item.type}</span>
               <span>{item.text}</span>
             </p>
             {body}

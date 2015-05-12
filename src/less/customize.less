@@ -17,5 +17,31 @@
   }
 }
 
-.blocks {
+.columns {
+  .full-width-section;
+  @media @device-large {
+    padding-top: (@desktop-gutter);
+    padding-bottom: (@desktop-gutter);
+  }
+
+  .col1 {
+    float: left;
+    width: 358px;
+    padding-right: 32px;
+  }
+
+  .col2 {
+    float: left;
+    width: 538px;
+    padding-right: 32px;
+  }
+
+  .col3 {
+    float: left;
+    width: 786px;
+  }
+}
+
+table.table {
+  margin-left: -8px;
 }

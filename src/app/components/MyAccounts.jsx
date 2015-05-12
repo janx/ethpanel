@@ -1,7 +1,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
-var Card = require('./Card');
+var MyAccountItem = require('./MyAccountItem');
 var Utils = require('../services/UtilsService');
 
 var MyAccounts = React.createClass({
@@ -17,20 +17,29 @@ var MyAccounts = React.createClass({
     }, 0);
 
     var items = this.props.accounts.map(function(account) {
-      return {
-        name: Utils.fullHash(account.address),
-        text: this.prettyBalance(account.balance)
-      };
+      return (
+        <MyAccountItem key={account.address} default={this.props.default} {...account} />
+      );
     }.bind(this));
-    items.push({name: 'Total', text: this.prettyBalance(total)});
 
     return (
-      <Card title={'My Accounts'} items={items} />
+      <div className="card component-info accounts">
+        <h3 className='mui-font-style-title'>My Accounts</h3>
+        <table className='table'>
+          <thead>
+            <tr>
+              <th className='address'>Address</th>
+              <th className='mark'></th>
+              <th className='balance'>Balance (ethers)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items}
+            <MyAccountItem key={'total'} address={'0xTotal'} balance={total} />
+          </tbody>
+        </table>
+      </div>
     );
-  },
-
-  prettyBalance: function(balance) {
-    return Utils.fromWei(balance, 'ether').toFixed(4) + ' ethers';
   }
 
 });

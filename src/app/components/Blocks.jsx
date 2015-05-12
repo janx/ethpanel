@@ -6,7 +6,7 @@ var Blocks = React.createClass({
 
   getDefaultProps: function() {
     return {
-      limit: 20
+      limit: 10
     };
   },
 

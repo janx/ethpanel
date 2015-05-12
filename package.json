@@ -9,9 +9,6 @@
   "scripts": {
     "start": "gulp"
   },
-  "browser": {
-    "mui": "../src/index.js"
-  },
   "browserify": {
     "transform": [
       [
@@ -30,7 +27,8 @@
     "moment": "^2.10.2",
     "object-assign": "^2.0.0",
     "react": "^0.13.2",
-    "web3": "^0.3.4"
+    "web3": "^0.3.4",
+    "material-ui": "file:../../opensource/material-ui"
   },
   "devDependencies": {
     "browser-sync": "^2.7.1",

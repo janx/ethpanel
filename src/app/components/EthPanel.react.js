@@ -16,6 +16,13 @@ var StatsStore = require('../stores/StatsStore');
 var AccountStore = require('../stores/AccountStore');
 
 /*
+ * material-ui
+ */
+var mui = require('material-ui');
+var ThemeManager = new mui.Styles.ThemeManager();
+var { AppBar, AppCanvas, Menu, IconButton } = mui;
+
+/*
  * Top controller-view
  */
 var EthPanel = React.createClass({
@@ -42,14 +49,48 @@ var EthPanel = React.createClass({
   },
 
   render: function() {
-    return (
-      <div id='myeth'>
-        <NetStats {...this.state.netStats} />
-        <Mining {...this.state.mining} />
-        <MyAccounts {...this.state.myAccounts} />
-        <Blocks blocks={this.state.blocks} />
-      </div>
+    var title = "EthPanel - lala";
+
+    var githubButton = (
+      <IconButton
+        iconStyle={{color: '#FFF', fill: '#FFF'}}
+        iconClassName="muidocs-icon-custom-github"
+        href="https://github.com/janx/ethpanel"
+        linkButton={true} />
     );
+
+    return (
+      <AppCanvas predefinedLayout={1}>
+
+        <AppBar
+          className="mui-dark-theme"
+          onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTap}
+          title={title}
+          zDepth={0}
+          iconElementRight={githubButton}/>
+
+        <div id='myeth'>
+          <NetStats {...this.state.netStats} />
+          <Mining {...this.state.mining} />
+          <MyAccounts {...this.state.myAccounts} />
+          <Blocks blocks={this.state.blocks} />
+        </div>
+
+        <div className="footer full-width-section mui-dark-theme">
+          <p>
+            A <a href='http://material-ui.com'>Material UI</a> themed page. Created by <a href="https://twitter.com/janhxie">Jan</a> with love.
+          </p>
+          {githubButton}
+        </div>
+
+      </AppCanvas>
+    );
+  },
+
+  getChildContext: function() {
+    return {
+      muiTheme: ThemeManager.getCurrentTheme()
+    }
   },
 
   onBlockChange: function() {
@@ -69,8 +110,16 @@ var EthPanel = React.createClass({
     this.setState({
       myAccounts: AccountStore.getMyAccounts()
     });
+  },
+
+  onLeftIconButtonTouchTap: function() {
+    this.refs.leftNav.toggle();
   }
 
 })
+
+EthPanel.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 module.exports = EthPanel;

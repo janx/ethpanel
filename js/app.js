@@ -16,5 +16,6 @@ try {
     <EthPanelError />,
     document.getElementById('ethpanel')
   );
+  throw error;
 }
 

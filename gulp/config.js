@@ -1,6 +1,5 @@
 var dest = './build';
 var src = './src';
-var mui = '../src';
 
 module.exports = {
   browserSync: {
@@ -16,8 +15,7 @@ module.exports = {
   less: {
     src: src + '/less/main.less',
     watch: [
-      src + '/less/**',
-      mui + '/less/**'
+      src + '/less/**'
     ],
     dest: dest
   },
@@ -40,5 +38,9 @@ module.exports = {
       dest: dest,
       outputName: 'app.js'
     }]
+  },
+  uglify: {
+    src: dest + '/*.js',
+    dest: dest
   }
 };

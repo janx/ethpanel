@@ -8,6 +8,10 @@ var Utils = {
     return hash.slice(2);
   },
 
+  shortHash: function(hash) {
+    return hash.slice(2, 12);
+  },
+
   prettyHash: function(hash) {
     return hash.slice(2, 34);
   },

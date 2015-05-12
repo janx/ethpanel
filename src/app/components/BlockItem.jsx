@@ -14,7 +14,7 @@ var BlockItem = React.createClass({
     return (
       <tr>
         <td>{this.props.number}</td>
-        <td>{Utils.prettyHash(this.props.hash)}</td>
+        <td>{Utils.fullHash(this.props.hash)}</td>
         <td>{Utils.prettyTime(this.props.timestamp)}</td>
         <td>{this.props.transactions.length}</td>
       </tr>

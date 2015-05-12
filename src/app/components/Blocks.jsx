@@ -28,15 +28,15 @@ var Blocks = React.createClass({
     });
 
     return (
-      <div className="blocks">
-        <h2>Last {this.props.limit} Blocks</h2>
-        <table>
+      <div className="card component-info blocks">
+        <h3 className='mui-font-style-title'>Last {this.props.limit} Blocks</h3>
+        <table className='table'>
           <thead>
             <tr>
-              <th>Number</th>
-              <th>Hash</th>
-              <th>Time</th>
-              <th>Transactions</th>
+              <th className='number'>Number</th>
+              <th className='hash'>Hash</th>
+              <th className='time'>Time</th>
+              <th className='tx'>Transactions</th>
             </tr>
           </thead>
           <tbody>

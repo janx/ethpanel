@@ -12,7 +12,7 @@ var _stats = {
 
 var StatsStore = assign({}, EventEmitter.prototype, {
 
-  getNetStats: function() {
+  getNetwork: function() {
     return _stats.net;
   },
 
@@ -37,7 +37,7 @@ var StatsStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
   switch(action.actionType) {
     case AppConstants.MYETH_SERVICE_UPDATE:
-      _stats.net = action.data.netStats;
+      _stats.net = action.data.network;
       _stats.mining = action.data.mining;
       StatsStore.emitChange();
       break;

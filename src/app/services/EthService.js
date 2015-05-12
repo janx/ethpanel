@@ -22,7 +22,7 @@ assign(EthService.prototype, {
     this.lastNumber = number - this.options.blocksLimit;
 
     this.blocks = [];
-    this.netStats = {};
+    this.network = {};
     this.myAccounts = {};
 
     this.slowCallback();
@@ -46,14 +46,14 @@ assign(EthService.prototype, {
     EthPanelActions.ethServiceUpdate({
       lastNumber: this.lastNumber,
       blocks:     this.blocks,
-      netStats:   this.netStats,
+      network:    this.network,
       mining:     this.mining,
       myAccounts: this.myAccounts
     });
   },
 
   slowCallback: function() {
-    this.updateNetStats();
+    this.updateNetwork();
   },
 
   updateBlocks: function() {
@@ -65,8 +65,8 @@ assign(EthService.prototype, {
     this.blocks = this.blocks.slice(0, this.options.blocksLimit);
   },
 
-  updateNetStats: function() {
-    this.netStats = {
+  updateNetwork: function() {
+    this.network = {
       listening: this.web3.net.listening,
       peerCount: this.web3.net.peerCount
     };

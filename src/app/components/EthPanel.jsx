@@ -3,10 +3,10 @@ var React = require('react');
 /*
  * React Components
  */
-var Blocks = require('./Blocks.react');
-var NetStats = require('./NetStats.react');
-var Mining = require('./Mining.react');
-var MyAccounts = require('./MyAccounts.react');
+var Blocks = require('./Blocks');
+var Network = require('./Network');
+var Mining = require('./Mining');
+var MyAccounts = require('./MyAccounts');
 
 /*
  * React Stores
@@ -29,7 +29,7 @@ var EthPanel = React.createClass({
 
   getInitialState: function() {
     return {
-      netStats: StatsStore.getNetStats(),
+      network: StatsStore.getNetwork(),
       mining: StatsStore.getMining(),
       myAccounts: AccountStore.getMyAccounts(),
       blocks: BlockStore.getAll()
@@ -49,7 +49,7 @@ var EthPanel = React.createClass({
   },
 
   render: function() {
-    var title = "EthPanel - lala";
+    var title = "EthPanel @ " + this.props.endpoint;
 
     var githubButton = (
       <IconButton
@@ -71,7 +71,7 @@ var EthPanel = React.createClass({
 
         <div className="app-content-canvas page-with-nav">
           <div className="page-with-nav-content">
-            <NetStats {...this.state.netStats} />
+            <Network {...this.state.network} />
             <Mining {...this.state.mining} />
             <MyAccounts {...this.state.myAccounts} />
             <Blocks blocks={this.state.blocks} />
@@ -106,7 +106,7 @@ var EthPanel = React.createClass({
 
   onStatsChange: function() {
     this.setState({
-      netStats: StatsStore.getNetStats(),
+      network: StatsStore.getNetwork(),
       mining: StatsStore.getMining()
     });
   },

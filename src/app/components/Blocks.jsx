@@ -1,6 +1,6 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var BlockItem = require('./BlockItem.react');
+var BlockItem = require('./BlockItem');
 
 var Blocks = React.createClass({
 

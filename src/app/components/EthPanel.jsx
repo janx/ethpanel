@@ -70,14 +70,11 @@ var EthPanel = React.createClass({
           iconElementRight={githubButton}/>
 
         <div className="app-content-canvas page-with-nav">
-          <div className="page-with-nav-content">
+          <div className="full-width-section">
             <Network {...this.state.network} />
             <Mining {...this.state.mining} />
             <MyAccounts {...this.state.myAccounts} />
             <Blocks blocks={this.state.blocks} />
-          </div>
-          <div className="page-with-nav-secondary-nav">
-            <h1>haha</h1>
           </div>
         </div>
 

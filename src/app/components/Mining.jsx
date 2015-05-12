@@ -1,5 +1,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
+
+var Card = require('./Card');
 var Utils = require('../services/UtilsService');
 
 var Mining = React.createClass({
@@ -13,21 +15,15 @@ var Mining = React.createClass({
   render: function() {
     var detailStyle = {display: this.props.mining ? 'block' : 'none'};
 
+    var items = [
+      {name: 'Mining', text: this.props.mining.toString()},
+      {name: 'Coinbase', text: Utils.fullHash(this.props.coinbase)},
+      {name: 'Hashrate', text: this.props.hashrate + " hashes/s"},
+      {name: 'Gas Price', text: Utils.fromWei(this.props.gasPrice, 'szabo').toString() + ' szabo'}
+    ];
+
     return (
-      <div className="mining">
-        <div className='enabled'>
-          <span className='name'>Mining:</span> {this.props.mining.toString()}
-        </div>
-        <div className='coinbase' style={detailStyle}>
-          <span className='name'>Coinbase:</span> {Utils.fullHash(this.props.coinbase)}
-        </div>
-        <div className='hashrate' style={detailStyle}>
-          <span className='name'>Hashrate:</span> {this.props.hashrate} hashes/s
-        </div>
-        <div className='gasPrice' style={detailStyle}>
-          <span className='name'>Gas Price:</span> {Utils.fromWei(this.props.gasPrice, 'szabo').toString()} szabo
-        </div>
-      </div>
+      <Card title={'Mining'} items={items} />
     );
   }
 

@@ -88,7 +88,7 @@ assign(EthService.prototype, {
 
     if(this.mining.mining) {
       assign(this.mining, {
-        coinbase: this.web3.eth.coinbase,
+        coinbase: this.web3.eth.coinbase || '',
         hashrate: this.web3.eth.hashrate,
         gasPrice: this.web3.eth.gasPrice
       });

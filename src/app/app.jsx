@@ -27,5 +27,6 @@
       <EthPanelError />,
       document.body
     );
+    throw error;
   }
 })();

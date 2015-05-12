@@ -87,7 +87,7 @@ var EthPanel = React.createClass({
 
         <div className="footer full-width-section mui-dark-theme">
           <p>
-            A <a href='http://material-ui.com'>Material UI</a> themed page. Created by <a href="https://twitter.com/janhxie">Jan</a> with love.
+            <a href='http://material-ui.com'>Material UI</a> theme &amp; created by <a href="https://twitter.com/janhxie">Jan</a>.
           </p>
           {githubButton}
         </div>

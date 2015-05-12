@@ -1,6 +1,5 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var cx = require('classnames');
 var Utils = require('../services/UtilsService');
 
 var MyAccountItem = React.createClass({
@@ -11,14 +10,24 @@ var MyAccountItem = React.createClass({
   },
 
   render: function() {
-    var classes = cx({default: (this.props.default === this.props.address)});
     return (
-      <tr className={classes}>
+      <tr>
         <td>{Utils.fullHash(this.props.address)}</td>
-        <td></td>
+        <td>{this.icons()}</td>
         <td>{Utils.fromWei(this.props.balance, 'ether').toFixed(4)}</td>
       </tr>
     );
+  },
+
+  icons: function() {
+    var icons = [];
+    if (this.props.default === this.props.address) {
+      icons.push(<span title='This is the default address.' className='muidocs-icon-action-home' />);
+    }
+    if (this.props.coinbase === this.props.address) {
+      icons.push(<span title='This is the coinbase address.' className='muidocs-icon-action-stars' />);
+    }
+    return icons;
   }
 });
 

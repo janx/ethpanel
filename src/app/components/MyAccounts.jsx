@@ -18,7 +18,7 @@ var MyAccounts = React.createClass({
 
     var items = this.props.accounts.map(function(account) {
       return (
-        <MyAccountItem key={account.address} default={this.props.default} {...account} />
+        <MyAccountItem key={account.address} default={this.props.default} coinbase={this.props.coinbase} {...account} />
       );
     }.bind(this));
 

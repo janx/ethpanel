@@ -1,8 +1,8 @@
 (function () {
   var React = require('react');
-  //var EthPanel = require('./components/EthPanel.react');
-  //var EthPanelError = require('./components/EthPanelError.react');
-  //var EthService = require('./services/EthService');
+  var EthPanel = require('./components/EthPanel.react');
+  var EthPanelError = require('./components/EthPanelError.react');
+  var EthService = require('./services/EthService');
   var injectTapEventPlugin = require("react-tap-event-plugin");
 
   //Needed for React Developer Tools
@@ -19,14 +19,13 @@
     service.start();
 
     React.render(
-      <h1>Hello world!</h1>,
+      <EthPanel />,
       document.body
     );
   } catch(error) {
     React.render(
-      <h1>Error!</h1>,
+      <EthPanelError />,
       document.body
     );
   }
 })();
-

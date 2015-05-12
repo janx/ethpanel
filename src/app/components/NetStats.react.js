@@ -1,6 +1,8 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
+var Paper = require('material-ui').Paper;
+
 var NetStats = React.createClass({
 
   propTypes: {
@@ -10,14 +12,16 @@ var NetStats = React.createClass({
 
   render: function() {
     return (
-      <div className="netStats">
-        <div className='listening'>
-          <span className='name'>Listening:</span> {this.props.listening.toString()}
+      <Paper zDepth={3}>
+        <div className="netStats">
+          <div className='listening'>
+            <span className='name'>Listening:</span> {this.props.listening.toString()}
+          </div>
+          <div className='peerCount'>
+            <span className='name'>Peer Count:</span> {this.props.peerCount}
+          </div>
         </div>
-        <div className='peerCount'>
-          <span className='name'>Peer Count:</span> {this.props.peerCount}
-        </div>
-      </div>
+      </Paper>
     );
   }
 

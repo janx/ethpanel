@@ -69,11 +69,16 @@ var EthPanel = React.createClass({
           zDepth={0}
           iconElementRight={githubButton}/>
 
-        <div id='myeth'>
-          <NetStats {...this.state.netStats} />
-          <Mining {...this.state.mining} />
-          <MyAccounts {...this.state.myAccounts} />
-          <Blocks blocks={this.state.blocks} />
+        <div className="app-content-canvas page-with-nav">
+          <div className="page-with-nav-content">
+            <NetStats {...this.state.netStats} />
+            <Mining {...this.state.mining} />
+            <MyAccounts {...this.state.myAccounts} />
+            <Blocks blocks={this.state.blocks} />
+          </div>
+          <div className="page-with-nav-secondary-nav">
+            <h1>haha</h1>
+          </div>
         </div>
 
         <div className="footer full-width-section mui-dark-theme">

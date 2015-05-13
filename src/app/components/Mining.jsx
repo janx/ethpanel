@@ -13,7 +13,7 @@ var Mining = React.createClass({
   },
 
   render: function() {
-    var coinbase = Utils.fullHash(this.props.coinbase);
+    var coinbase = this.props.coinbase ? Utils.fullHash(this.props.coinbase) :  'n/a';
 
     var detailStyle = {display: this.props.mining ? 'block' : 'none'};
 

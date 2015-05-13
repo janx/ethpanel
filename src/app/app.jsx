@@ -14,7 +14,6 @@
   //https://github.com/zilverline/react-tap-event-plugin
   injectTapEventPlugin();
 
-  try {
     var endpoint = 'localhost:8545';
     var service = new EthService('http://' + endpoint);
     service.start();
@@ -23,11 +22,4 @@
       <EthPanel endpoint={endpoint} />,
       document.body
     );
-  } catch(error) {
-    React.render(
-      <EthPanelError />,
-      document.body
-    );
-    throw error;
-  }
 })();

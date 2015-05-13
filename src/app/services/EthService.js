@@ -87,8 +87,12 @@ assign(EthService.prototype, {
     };
 
     if(this.mining.mining) {
+      var coinbase = this.web3.eth.coinbase || '';
+      var coinbaseBalance = coinbase ? this.web3.eth.getBalance(coinbase) : 0;
+
       assign(this.mining, {
-        coinbase: this.web3.eth.coinbase || '',
+        coinbase: coinbase,
+        coinbaseBalance: coinbaseBalance,
         hashrate: this.web3.eth.hashrate,
         gasPrice: this.web3.eth.gasPrice
       });

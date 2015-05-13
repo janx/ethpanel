@@ -13,10 +13,13 @@ var Mining = React.createClass({
   },
 
   render: function() {
+    var coinbase = Utils.fullHash(this.props.coinbase);
+
     var detailStyle = {display: this.props.mining ? 'block' : 'none'};
 
     var items = [
-      {name: 'Mining', text: this.props.mining.toString()},
+      {name: 'Coinbase', text: coinbase},
+      {name: 'Balance', text: Utils.fromWei(this.props.coinbaseBalance, 'ether').toString() + ' ethers'},
       {name: 'Hashrate', text: this.props.hashrate + " hashes/s"},
       {name: 'Gas Price', text: Utils.fromWei(this.props.gasPrice, 'szabo').toString() + ' szabo'}
     ];

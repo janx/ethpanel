@@ -34,7 +34,7 @@ var Blocks = React.createClass({
           <thead>
             <tr>
               <th className='number'>Number</th>
-              <th className='hash'>Hash</th>
+              <th className='hash'>Hash (first 16 bytes)</th>
               <th className='time'>Time</th>
               <th className='tx'>Transactions</th>
             </tr>

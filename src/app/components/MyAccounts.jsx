@@ -12,9 +12,15 @@ var MyAccounts = React.createClass({
   },
 
   render: function() {
-    var total = this.props.accounts.reduce(function(sum, account) {
-      return account.balance.plus(sum);
-    }, 0);
+    var totalItem;
+    if (this.props.accounts.length > 0) {
+      var total = this.props.accounts.reduce(function(sum, account) {
+        return account.balance.plus(sum);
+      }, 0);
+      totalItem = <MyAccountItem key={'total'} address={'0xTotal'} balance={total} />;
+    } else {
+      totalItem = '';
+    }
 
     var items = this.props.accounts.map(function(account) {
       return (
@@ -35,7 +41,7 @@ var MyAccounts = React.createClass({
           </thead>
           <tbody>
             {items}
-            <MyAccountItem key={'total'} address={'0xTotal'} balance={total} />
+            {totalItem}
           </tbody>
         </table>
       </div>

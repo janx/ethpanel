@@ -5,16 +5,18 @@ var Utils = require('../services/UtilsService');
 var MyAccountItem = React.createClass({
   propTypes: {
     address: PropTypes.string.isRequired,
-    balance: PropTypes.object.isRequired,
+    balance: PropTypes.object,
     default: PropTypes.string
   },
 
   render: function() {
+    var balance = balance ? Utils.fromWei(this.props.balance, 'ether').toFixed(4) : '0.0000';
+
     return (
       <tr>
         <td>{Utils.fullHash(this.props.address)}</td>
         <td>{this.icons()}</td>
-        <td>{Utils.fromWei(this.props.balance, 'ether').toFixed(4)}</td>
+        <td>{balance}</td>
       </tr>
     );
   },

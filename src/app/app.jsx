@@ -2,6 +2,7 @@
   var React = require('react');
   var EthPanel = require('./components/EthPanel');
   var EthPanelError = require('./components/EthPanelError');
+  var EthWebAPIUtils = require('./utils/EthWebAPIUtils');
   var EthService = require('./services/EthService');
   var injectTapEventPlugin = require("react-tap-event-plugin");
 
@@ -14,12 +15,8 @@
   //https://github.com/zilverline/react-tap-event-plugin
   injectTapEventPlugin();
 
-    var endpoint = 'localhost:8545';
-    var service = new EthService('http://' + endpoint);
-    service.start();
-
-    React.render(
-      <EthPanel endpoint={endpoint} />,
-      document.body
-    );
+  React.render(
+    <EthPanel endpoint={'localhost:8545'} />,
+    document.body
+  );
 })();

@@ -3,15 +3,13 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
+var ActionTypes = AppConstants.ActionTypes;
+
 var CHANGE_EVENT = 'change';
 
 var _blocks = null;
 
 var BlockStore = assign({}, EventEmitter.prototype, {
-
-  getLimit: function() {
-    return 20;
-  },
 
   getAll: function() {
     return _blocks;
@@ -31,10 +29,10 @@ var BlockStore = assign({}, EventEmitter.prototype, {
 
 });
 
-AppDispatcher.register(function(action) {
-  switch(action.actionType) {
-    case AppConstants.MYETH_SERVICE_UPDATE:
-      _blocks = action.data.blocks.slice(0, BlockStore.getLimit());
+BlockStore.dispatchToken = AppDispatcher.register(function(action) {
+  switch(action.type) {
+    case ActionTypes.RECEIVE_LATEST_STATES:
+      _blocks = action.states.blocks.slice(0, AppConstants.BlockListLimit);
       BlockStore.emitChange();
       break;
     default:

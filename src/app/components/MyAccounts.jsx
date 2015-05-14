@@ -8,6 +8,7 @@ var MyAccounts = React.createClass({
 
   propTypes: {
     default: PropTypes.string,
+    coinbase: PropTypes.string,
     accounts: PropTypes.array.isRequired
   },
 
@@ -17,9 +18,9 @@ var MyAccounts = React.createClass({
       var total = this.props.accounts.reduce(function(sum, account) {
         return account.balance.plus(sum);
       }, 0);
-      totalItem = <MyAccountItem key={'total'} address={'0xTotal'} balance={total} />;
+      totalItem = <MyAccountItem key={'total'} default={this.props.default} coinbase={this.props.coinbase} address={'0xTotal'} balance={total} />;
     } else {
-      totalItem = '';
+      totalItem = <MyAccountItem key={'total'} default={this.props.default} coinbase={this.props.coinbase} address={'0xTotal'} balance={null} />;
     }
 
     var items = this.props.accounts.map(function(account) {

@@ -1,5 +1,8 @@
 var React = require('react');
 
+var EthServerActionCreators = require('../actions/EthServerActionCreators');
+var EthWebAPIUtils = require('../utils/EthWebAPIUtils');
+
 /*
  * React Components
  */
@@ -22,30 +25,55 @@ var mui = require('material-ui');
 var ThemeManager = new mui.Styles.ThemeManager();
 var { AppBar, AppCanvas, Menu, IconButton } = mui;
 
+var _url, _poller;
+
+function startPolling(endpoint) {
+  _url = "http://" + endpoint;
+  EthServerActionCreators.receiveLatestStates(EthWebAPIUtils.getLatestStates(_url));
+
+  _poller = window.setInterval(function() {
+    EthServerActionCreators.receiveLatestStates(EthWebAPIUtils.getLatestStates(_url));
+  }, 2000);
+}
+
+function stopPolling() {
+  window.clearInterval(_poller);
+  _poller = _url = undefined;
+}
+
+function getStatesFromStores() {
+  return {
+    defaultAccount: AccountStore.getDefault(),
+    accounts: AccountStore.getAll(),
+    blocks: BlockStore.getAll(),
+    network: StatsStore.getNetwork(),
+    mining: StatsStore.getMining()
+  };
+}
+
 /*
  * Top controller-view
  */
 var EthPanel = React.createClass({
 
   getInitialState: function() {
-    return {
-      network: StatsStore.getNetwork(),
-      mining: StatsStore.getMining(),
-      myAccounts: AccountStore.getMyAccounts(),
-      blocks: BlockStore.getAll()
-    };
+    return null;
   },
 
   componentDidMount: function() {
-    BlockStore.addChangeListener(this.onBlockChange);
-    StatsStore.addChangeListener(this.onStatsChange);
-    AccountStore.addChangeListener(this.onMyAccountsChange);
+    BlockStore.addChangeListener(this._onChange);
+    StatsStore.addChangeListener(this._onChange);
+    AccountStore.addChangeListener(this._onChange);
+
+    startPolling(this.props.endpoint);
   },
 
   componentWillUnmount: function() {
-    BlockStore.removeChangeListener(this.onBlockChange);
-    StatsStore.removeChangeListener(this.onStatsChange);
-    AccountStore.removeChangeListener(this.onMyAccountsChange);
+    BlockStore.removeChangeListener(this._onChange);
+    StatsStore.removeChangeListener(this._onChange);
+    AccountStore.removeChangeListener(this._onChange);
+
+    stopPolling();
   },
 
   render: function() {
@@ -59,6 +87,33 @@ var EthPanel = React.createClass({
         linkButton={true} />
     );
 
+    var body;
+    if( this.state ) {
+      body = (
+        <div className="app-content-canvas page-with-nav">
+          <div className="columns">
+            <div className='col1'>
+              <Network {...this.state.network} />
+              <Mining {...this.state.mining} />
+            </div>
+            <div className='col2'>
+              <MyAccounts default={this.state.defaultAccount} coinbase={this.state.mining.coinbase} accounts={this.state.accounts} />
+              <div style={{clear: 'both'}} />
+            </div>
+            <div className='col3'>
+              <Blocks blocks={this.state.blocks} />
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      body = (
+        <div className="app-content-canvas page-with-nav" style={{height: 640}}>
+          <h1>Loading ...</h1>
+        </div>
+      );
+    }
+
     return (
       <AppCanvas predefinedLayout={1}>
 
@@ -69,21 +124,7 @@ var EthPanel = React.createClass({
           zDepth={0}
           iconElementRight={githubButton}/>
 
-        <div className="app-content-canvas page-with-nav">
-          <div className="columns">
-            <div className='col1'>
-              <Network {...this.state.network} />
-              <Mining {...this.state.mining} />
-            </div>
-            <div className='col2'>
-              <MyAccounts coinbase={this.state.mining.coinbase} {...this.state.myAccounts} />
-              <div style={{clear: 'both'}} />
-            </div>
-            <div className='col3'>
-              <Blocks blocks={this.state.blocks} />
-            </div>
-          </div>
-        </div>
+        {body}
 
         <div className="footer full-width-section mui-dark-theme">
           <p>
@@ -102,23 +143,8 @@ var EthPanel = React.createClass({
     }
   },
 
-  onBlockChange: function() {
-    this.setState({
-      blocks: BlockStore.getAll()
-    });
-  },
-
-  onStatsChange: function() {
-    this.setState({
-      network: StatsStore.getNetwork(),
-      mining: StatsStore.getMining()
-    });
-  },
-
-  onMyAccountsChange: function() {
-    this.setState({
-      myAccounts: AccountStore.getMyAccounts()
-    });
+  _onChange: function() {
+    this.setState(getStatesFromStores());
   },
 
   onLeftIconButtonTouchTap: function() {

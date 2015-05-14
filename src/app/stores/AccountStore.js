@@ -3,16 +3,21 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
+var ActionTypes = AppConstants.ActionTypes;
+
 var CHANGE_EVENT = 'change';
 
-var _accounts = {
-  my: {}
-};
+var _default;
+var _accounts = [];
 
 var AccountStore = assign({}, EventEmitter.prototype, {
 
-  getMyAccounts: function() {
-    return _accounts.my;
+  getAll: function() {
+    return _accounts;
+  },
+
+  getDefault: function() {
+    return _default;
   },
 
   emitChange: function() {
@@ -29,10 +34,11 @@ var AccountStore = assign({}, EventEmitter.prototype, {
 
 });
 
-AppDispatcher.register(function(action) {
-  switch(action.actionType) {
-    case AppConstants.MYETH_SERVICE_UPDATE:
-      _accounts.my = action.data.myAccounts;
+AccountStore.dispatchToken = AppDispatcher.register(function(action) {
+  switch(action.type) {
+    case ActionTypes.RECEIVE_LATEST_STATES:
+      _default  = action.states.defaultAccount;
+      _accounts = action.states.accounts;
       break;
     default:
       // no op

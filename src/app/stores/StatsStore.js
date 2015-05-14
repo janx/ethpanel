@@ -3,6 +3,8 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
+var ActionTypes = AppConstants.ActionTypes;
+
 var CHANGE_EVENT = 'change';
 
 var _stats = {
@@ -34,11 +36,11 @@ var StatsStore = assign({}, EventEmitter.prototype, {
 
 });
 
-AppDispatcher.register(function(action) {
-  switch(action.actionType) {
-    case AppConstants.MYETH_SERVICE_UPDATE:
-      _stats.net = action.data.network;
-      _stats.mining = action.data.mining;
+StatsStore.dispatchToken = AppDispatcher.register(function(action) {
+  switch(action.type) {
+    case ActionTypes.RECEIVE_LATEST_STATES:
+      _stats.net = action.states.network;
+      _stats.mining = action.states.mining;
       StatsStore.emitChange();
       break;
     default:

@@ -3,7 +3,6 @@
   var EthPanel = require('./components/EthPanel');
   var EthPanelError = require('./components/EthPanelError');
   var EthWebAPIUtils = require('./utils/EthWebAPIUtils');
-  var EthService = require('./services/EthService');
   var injectTapEventPlugin = require("react-tap-event-plugin");
 
   //Needed for React Developer Tools

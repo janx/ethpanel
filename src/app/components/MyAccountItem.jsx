@@ -1,6 +1,6 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var Utils = require('../services/UtilsService');
+var PrettyPrint = require('../utils/PrettyPrintUtils');
 
 var MyAccountItem = React.createClass({
   propTypes: {
@@ -10,11 +10,11 @@ var MyAccountItem = React.createClass({
   },
 
   render: function() {
-    var balance = balance ? Utils.fromWei(this.props.balance, 'ether').toFixed(4) : '0.0000';
+    var balance = balance ? PrettyPrint.fromWei(this.props.balance, 'ether').toFixed(4) : '0.0000';
 
     return (
       <tr>
-        <td>{Utils.fullHash(this.props.address)}</td>
+        <td>{PrettyPrint.fullHash(this.props.address)}</td>
         <td>{this.icons()}</td>
         <td>{balance}</td>
       </tr>

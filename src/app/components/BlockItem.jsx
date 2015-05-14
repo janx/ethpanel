@@ -1,6 +1,6 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var Utils = require('../services/UtilsService');
+var PrettyPrint = require('../utils/PrettyPrintUtils');
 
 var BlockItem = React.createClass({
   propTypes: {
@@ -14,8 +14,8 @@ var BlockItem = React.createClass({
     return (
       <tr>
         <td>{this.props.number}</td>
-        <td title={Utils.fullHash(this.props.hash)}>{Utils.prettyHash(this.props.hash)}</td>
-        <td>{Utils.prettyTime(this.props.timestamp)}</td>
+        <td title={PrettyPrint.fullHash(this.props.hash)}>{PrettyPrint.hash(this.props.hash)}</td>
+        <td>{PrettyPrint.time(this.props.timestamp)}</td>
         <td>{this.props.transactions.length}</td>
       </tr>
     );

@@ -2,7 +2,6 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 
 var MyAccountItem = require('./MyAccountItem');
-var Utils = require('../services/UtilsService');
 
 var MyAccounts = React.createClass({
 

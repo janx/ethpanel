@@ -1,5 +1,5 @@
 var dest = './build';
-var src = './src';
+var src = './app';
 
 module.exports = {
   browserSync: {
@@ -13,7 +13,7 @@ module.exports = {
     ]
   },
   markup: {
-    src: src + "/www/**",
+    src: src + "/*.html",
     dest: dest
   },
   browserify: {
@@ -23,9 +23,9 @@ module.exports = {
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
-      entries: src + '/app/app.jsx',
+      entries: src + '/js/app.jsx',
       dest: dest,
-      outputName: 'app.js'
+      outputName: 'js/app.js'
     }]
   },
   uglify: {

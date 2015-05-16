@@ -6,6 +6,17 @@
     "type": "git",
     "url": "https://github.com/janx/ethpanel.git"
   },
+  "homepage": "https://github.com/janx/ethpanel",
+  "keywords": [
+    "ethereum",
+    "admin",
+    "tool",
+    "utility",
+    "panel",
+    "react"
+  ],
+  "author": "Jan Xie",
+  "license": "MIT",
   "scripts": {
     "start": "gulp"
   },
@@ -19,36 +30,31 @@
       ]
     ]
   },
-  "dependencies": {
-    "classnames": "^2.1.1",
-    "flux": "^2.0.3",
-    "highlight.js": "^8.5.0",
-    "keymirror": "^0.1.1",
-    "moment": "^2.10.3",
-    "object-assign": "^2.0.0",
-    "react": "^0.13.2",
-    "web3": "^0.4.2"
-  },
   "devDependencies": {
     "browser-sync": "^2.7.1",
     "browserify": "^10.2.0",
+    "classnames": "^2.1.1",
+    "flux": "^2.0.3",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.2.0",
     "gulp-notify": "^2.2.0",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.4",
+    "highlight.js": "^8.5.0",
     "jest": "^0.1.39",
+    "keymirror": "^0.1.1",
+    "moment": "^2.10.3",
+    "object-assign": "^2.0.0",
     "pretty-hrtime": "^1.0.0",
+    "react": "^0.13.2",
+    "react-bootstrap": "^0.22.3",
     "reactify": "^1.1.0",
     "require-dir": "^0.3.0",
     "uglify-js": "~2.4.20",
     "underscore": "^1.8.3",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.2.0"
-  },
-  "author": "Jan Xie",
-  "jest": {
-    "rootDir": "./js"
+    "watchify": "^3.2.0",
+    "web3": "^0.4.2"
   }
 }

@@ -1,12 +1,20 @@
 (function () {
   var React = require('react');
-  var EthPanel = require('./components/EthPanel');
-  var EthPanelError = require('./components/EthPanelError');
-  var EthWebAPIUtils = require('./utils/EthWebAPIUtils');
+  var Router = require('react-router');
+
+  var routes = require('./routes');
+
+  //var EthPanel = require('./components/EthPanel');
+  //var EthPanelError = require('./components/EthPanelError');
 
   //Needed for React Developer Tools
   window.React = React;
 
+  Router.run(routes, function(Handler) {
+    React.render(<Handler />, document.body);
+  });
+
+  /*
   try {
     React.render(
       <EthPanel endpoint={'localhost:8545'} />,
@@ -19,5 +27,6 @@
     );
     throw error;
   }
+  */
 
 })();

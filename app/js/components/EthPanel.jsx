@@ -1,5 +1,8 @@
 var React = require('react');
 
+/*
+ * React Helpers
+ */
 var EthServerActionCreators = require('../actions/EthServerActionCreators');
 var EthWebAPIUtils = require('../utils/EthWebAPIUtils');
 
@@ -97,7 +100,10 @@ var EthPanel = React.createClass({
       );
     }
 
-    return body;
+    return (
+      <div>
+      </div>
+    );
   },
 
   _onChange: function() {

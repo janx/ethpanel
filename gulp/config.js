@@ -12,20 +12,9 @@ module.exports = {
       dest + '/**'
     ]
   },
-  less: {
-    src: src + '/less/main.less',
-    watch: [
-      src + '/less/**'
-    ],
-    dest: dest
-  },
   markup: {
     src: src + "/www/**",
     dest: dest
-  },
-  fontIcons: {
-    src: src + "/less/font-icons/**",
-    dest: dest + '/font-icons'
   },
   browserify: {
     // Enable source maps

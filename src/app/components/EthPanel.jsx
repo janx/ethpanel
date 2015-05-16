@@ -18,13 +18,6 @@ var BlockStore = require('../stores/BlockStore');
 var StatsStore = require('../stores/StatsStore');
 var AccountStore = require('../stores/AccountStore');
 
-/*
- * material-ui
- */
-var mui = require('material-ui');
-var ThemeManager = new mui.Styles.ThemeManager();
-var { AppBar, AppCanvas, Menu, IconButton } = mui;
-
 var _url, _poller;
 
 function startPolling(endpoint) {
@@ -79,14 +72,6 @@ var EthPanel = React.createClass({
   render: function() {
     var title = "EthPanel @ " + this.props.endpoint;
 
-    var githubButton = (
-      <IconButton
-        iconStyle={{color: '#FFF', fill: '#FFF'}}
-        iconClassName="muidocs-icon-custom-github"
-        href="https://github.com/janx/ethpanel"
-        linkButton={true} />
-    );
-
     var body;
     if( this.state ) {
       body = (
@@ -108,53 +93,17 @@ var EthPanel = React.createClass({
       );
     } else {
       body = (
-        <div className="app-content-canvas page-with-nav" style={{height: 640}}>
-          <h1>Loading ...</h1>
-        </div>
+        <h1>Loading ...</h1>
       );
     }
 
-    return (
-      <AppCanvas predefinedLayout={1}>
-
-        <AppBar
-          className="mui-dark-theme"
-          onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTap}
-          title={title}
-          zDepth={0}
-          iconElementRight={githubButton}/>
-
-        {body}
-
-        <div className="footer full-width-section mui-dark-theme">
-          <p>
-            <a href='http://material-ui.com'>Material UI</a> theme &amp; created by <a href="https://twitter.com/janhxie">Jan</a>.
-          </p>
-          {githubButton}
-        </div>
-
-      </AppCanvas>
-    );
-  },
-
-  getChildContext: function() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    }
+    return body;
   },
 
   _onChange: function() {
     this.setState(getStatesFromStores());
-  },
-
-  onLeftIconButtonTouchTap: function() {
-    this.refs.leftNav.toggle();
   }
 
 })
-
-EthPanel.childContextTypes = {
-  muiTheme: React.PropTypes.object
-};
 
 module.exports = EthPanel;

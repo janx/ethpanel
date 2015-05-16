@@ -10,7 +10,7 @@ var MyAccountItem = React.createClass({
   },
 
   render: function() {
-    var balance = balance ? PrettyPrint.fromWei(this.props.balance, 'ether').toFixed(4) : '0.0000';
+    var balance = this.props.balance ? PrettyPrint.fromWei(this.props.balance, 'ether').toFixed(4) : '0.0000';
 
     return (
       <tr>

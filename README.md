@@ -26,7 +26,7 @@ This will perform an initial build and start a watcher process. `build/` directo
 
 To build a production version, run:
 
-   npm run release
+    npm run release
 
 To run the app, simply open `build/index.html`.
 
@@ -34,6 +34,6 @@ To run the app, simply open `build/index.html`.
 
 Besides rpc, you also need to allow cross domain ajax request on go-ethereum:
 
-   geth --rpc --rpccorsdomain "*"
+    geth --rpc --rpccorsdomain "*"
 
 '*' will allow ajax request from any domain. You can set it to a more specific domain, e.g. 'http://localhost:8080'.

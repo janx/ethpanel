@@ -18,7 +18,8 @@
   "author": "Jan Xie",
   "license": "MIT",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "release": "gulp release"
   },
   "browserify": {
     "transform": [

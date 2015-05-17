@@ -1,5 +1,8 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
+
+var { Glyphicon } = require('react-bootstrap');
+
 var PrettyPrint = require('../../utils/PrettyPrintUtils');
 
 var MyAccountItem = React.createClass({
@@ -24,10 +27,10 @@ var MyAccountItem = React.createClass({
   icons: function() {
     var icons = [];
     if (this.props.default === this.props.address) {
-      icons.push(<span key='default' title='This is the default address.' className='muidocs-icon-action-home' />);
+      icons.push(<Glyphicon key='default' glyph='heart' />);
     }
     if (this.props.coinbase === this.props.address) {
-      icons.push(<span key='coinbase' title='This is the coinbase address.' className='muidocs-icon-action-stars' />);
+      icons.push(<Glyphicon key='coinbase' glyph='flash' title="This is the coinbase address." />);
     }
     return icons;
   }

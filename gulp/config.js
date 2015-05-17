@@ -29,6 +29,10 @@ module.exports = {
     src: src + "/*.html",
     dest: dest
   },
+  fonts: {
+    src: node_modules + '/bootstrap/fonts/**',
+    dest: dest + '/fonts'
+  },
   browserify: {
     // Enable source maps
     debug: true,

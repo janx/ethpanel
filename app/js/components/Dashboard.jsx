@@ -24,10 +24,10 @@ var AccountStore = require('../stores/AccountStore');
 
 var _url, _poller;
 
-function startPolling(host, port) {
+function startPolling(node) {
   console.log("start watching ...");
 
-  _url = "http://" + host + ':' + port;
+  _url = "http://" + node.host + ':' + node.port;
   EthServerActionCreators.receiveLatestStates(EthWebAPIUtils.getLatestStates(_url));
 
   _poller = window.setInterval(function() {
@@ -63,7 +63,7 @@ module.exports = React.createClass({
     StatsStore.addChangeListener(this._onChange);
     AccountStore.addChangeListener(this._onChange);
 
-    startPolling.apply(this, this.props.nodeId.split('@'));
+    startPolling(this.props.node);
   },
 
   componentWillUnmount: function() {

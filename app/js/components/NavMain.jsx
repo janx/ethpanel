@@ -1,6 +1,6 @@
 var React = require('react');
 var { Link } = require('react-router');
-var { Navbar, Nav } = require('react-bootstrap');
+var { Navbar, CollapsibleNav, Nav, NavItem } = require('react-bootstrap');
 
 var _links = {
   'blocks': {
@@ -26,10 +26,19 @@ module.exports = React.createClass({
     ]);
 
     return (
-      <Navbar componentClass='header' brand={brand} fluid inverse staticTop className='ep-navbar' role='banner' toggleNavKey={0}>
-        <Nav className='ep-nav-collapse' role='navigation' eventKey={0} id='top'>
-          {links}
-        </Nav>
+      <Navbar brand={brand} fluid inverse fixedTop toggleNavKey={0}>
+        <CollapsibleNav eventKey={0}>
+          <Nav navbar>
+            {links}
+          </Nav>
+          <Nav navbar right>
+            <li>
+              <Link to='dashboard' params={{id: this._nodeId(this.props.node)}}>
+                {this._nodeName(this.props.node)}
+              </Link>
+            </li>
+          </Nav>
+        </CollapsibleNav>
       </Navbar>
     );
   },
@@ -42,6 +51,22 @@ module.exports = React.createClass({
         <Link to={link.link}>{link.title}</Link>
       </li>
     );
+  },
+
+  _nodeName: function(node) {
+    if(node) {
+      return node.host + ':' + node.port;
+    } else {
+      return '';
+    }
+  },
+
+  _nodeId: function(node) {
+    if(node) {
+      return node.host + '@' + node.port;
+    } else {
+      return '';
+    }
   }
 
 });

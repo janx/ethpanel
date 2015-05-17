@@ -6,7 +6,7 @@ EthPanel is designed to be a lightweight, full functional, and browser only app.
 
 EthPanel communicates with your ethereum node through json rpc, so make sure you enabled json rpc of your ethereum node.
 
-Check out the live version [here](https://janx.github.io/ethpanel/).
+Check out the live version [here](http://janx.github.io/ethpanel/).
 
 ## Build
 

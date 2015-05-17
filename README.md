@@ -4,7 +4,11 @@ A friendly web interface to ethereum node.
 
 EthPanel is designed to be a lightweight, full functional, and browser only app. Browser only means it runs completely in browser, requires nothing to be installed on your computer.
 
-EthPanel communicates with your ethereum node through json rpc, so make sure you enabled json rpc of your ethereum node.
+EthPanel communicates with your ethereum node through json rpc, so make sure your node enabled json rpc and allowed [cross-origin resource sharing](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing):
+
+    geth --rpc --rpccorsdomain "*"
+
+'*' will allow ajax request from any domain. You can set it to a more specific domain, e.g. `http://localhost:8080`.
 
 Check out the live version [here](http://janx.github.io/ethpanel/).
 
@@ -29,11 +33,3 @@ To build a production version, run:
     npm run release
 
 To run the app, simply open `build/index.html`.
-
-## Tip
-
-Besides rpc, you also need to allow cross domain ajax request on go-ethereum:
-
-    geth --rpc --rpccorsdomain "*"
-
-'*' will allow ajax request from any domain. You can set it to a more specific domain, e.g. `http://localhost:8080`.

@@ -2,7 +2,7 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 
 var Card = require('./Card');
-var PrettyPrint = require('../utils/PrettyPrintUtils');
+var PrettyPrint = require('../../utils/PrettyPrintUtils');
 
 var Mining = React.createClass({
 

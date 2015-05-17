@@ -1,6 +1,6 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var PrettyPrint = require('../utils/PrettyPrintUtils');
+var PrettyPrint = require('../../utils/PrettyPrintUtils');
 
 var BlockItem = React.createClass({
   propTypes: {

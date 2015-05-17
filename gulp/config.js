@@ -46,7 +46,7 @@ module.exports = {
     }]
   },
   uglify: {
-    src: dest + '/*.js',
-    dest: dest
+    src: dest + '/js/**',
+    dest: dest + '/js'
   }
 };

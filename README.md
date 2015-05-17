@@ -12,6 +12,8 @@ EthPanel communicates with your ethereum node through json rpc, so make sure you
 
 Check out the live version [here](http://janx.github.io/ethpanel/).
 
+It's also deployed on [EthFans.org](http://ethfans.org) as a [utility](http://ethfans.org/ethpanel/).
+
 ## Build
 
 You must have [npm](https://www.npmjs.org/) installed on your computer.

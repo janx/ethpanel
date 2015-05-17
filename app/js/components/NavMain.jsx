@@ -2,8 +2,6 @@ var React = require('react');
 var { Link } = require('react-router');
 var { Navbar, CollapsibleNav, Nav, NavItem } = require('react-bootstrap');
 
-var NodeUtils = require('../utils/NodeUtils');
-
 var _links = {
   'blocks': {
     link: 'blocks',
@@ -35,8 +33,8 @@ module.exports = React.createClass({
           </Nav>
           <Nav navbar right>
             <li>
-              <Link to='dashboard' params={{id: NodeUtils.getId(this.props.node)}}>
-                {NodeUtils.getName(this.props.node)}
+              <Link to='dashboard' params={this.props.node}>
+                {this._nodeName(this.props.node)}
               </Link>
             </li>
           </Nav>
@@ -53,6 +51,14 @@ module.exports = React.createClass({
         <Link to={link.link}>{link.title}</Link>
       </li>
     );
+  },
+
+  _nodeName: function(node) {
+    if(node) {
+      return node.host + ':' + node.port;
+    } else {
+      return '';
+    }
   }
 
 });

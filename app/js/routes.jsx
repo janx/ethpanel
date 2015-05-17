@@ -11,9 +11,9 @@ module.exports = (
   <Route name='root' path="/" handler={Root}>
     <Route name='nodes' path="nodes" handler={Node}>
       <Route name='blocks' path='blocks' handler={Blocks} />
-      <Route name='dashboard' path=':id' handler={Dashboard} />
+      <Route name='dashboard' path=':host/:port' handler={Dashboard} />
     </Route>
 
-    <Redirect from='/' to='/nodes/localhost@8545' />
+    <Redirect from='/' to='/nodes/localhost/8545' />
   </Route>
 );

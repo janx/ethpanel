@@ -12,21 +12,24 @@ var MyAccounts = React.createClass({
   },
 
   render: function() {
-    var totalItem;
-    if (this.props.accounts.length > 0) {
-      var total = this.props.accounts.reduce(function(sum, account) {
-        return account.balance.plus(sum);
-      }, 0);
-      totalItem = <MyAccountItem key={'total'} default={this.props.default} coinbase={this.props.coinbase} address={'0xTotal'} balance={total} />;
-    } else {
-      totalItem = <MyAccountItem key={'total'} default={this.props.default} coinbase={this.props.coinbase} address={'0xTotal'} balance={null} />;
-    }
-
     var items = this.props.accounts.map(function(account) {
       return (
         <MyAccountItem key={account.address} default={this.props.default} coinbase={this.props.coinbase} {...account} />
       );
     }.bind(this));
+
+    if (this.props.accounts.length > 0) {
+      var total = this.props.accounts.reduce(function(sum, account) {
+        return account.balance.plus(sum);
+      }, 0);
+      items.push(
+        <MyAccountItem key={'total'} default={this.props.default} coinbase={this.props.coinbase} address={'0xTotal'} balance={total} />
+      );
+    } else {
+      items.push(
+        <MyAccountItem key={'total'} default={this.props.default} coinbase={this.props.coinbase} address={'0xTotal'} balance={null} />
+      );
+    }
 
     return (
       <div className="card component-info accounts">
@@ -41,7 +44,6 @@ var MyAccounts = React.createClass({
           </thead>
           <tbody>
             {items}
-            {totalItem}
           </tbody>
         </table>
       </div>

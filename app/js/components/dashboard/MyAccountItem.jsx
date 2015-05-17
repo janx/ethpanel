@@ -24,10 +24,10 @@ var MyAccountItem = React.createClass({
   icons: function() {
     var icons = [];
     if (this.props.default === this.props.address) {
-      icons.push(<span title='This is the default address.' className='muidocs-icon-action-home' />);
+      icons.push(<span key='default' title='This is the default address.' className='muidocs-icon-action-home' />);
     }
     if (this.props.coinbase === this.props.address) {
-      icons.push(<span title='This is the coinbase address.' className='muidocs-icon-action-stars' />);
+      icons.push(<span key='coinbase' title='This is the coinbase address.' className='muidocs-icon-action-stars' />);
     }
     return icons;
   }

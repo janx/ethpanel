@@ -1,5 +1,8 @@
+var bootstrapPackageJson = require('../node_modules/bootstrap/package.json');
+
+var node_modules = './node_modules';
+var src = './app';
 var dest = './build';
-var src = './src';
 
 module.exports = {
   browserSync: {
@@ -13,19 +16,22 @@ module.exports = {
     ]
   },
   less: {
-    src: src + '/less/main.less',
-    watch: [
-      src + '/less/**'
+    src: [
+      node_modules + '/bootstrap/' + bootstrapPackageJson.less,
+      src + '/css/**/*.less'
     ],
-    dest: dest
+    watch: [
+      src + '/css/**/*.less'
+    ],
+    dest: dest + '/css'
   },
   markup: {
-    src: src + "/www/**",
+    src: src + "/*.html",
     dest: dest
   },
-  fontIcons: {
-    src: src + "/less/font-icons/**",
-    dest: dest + '/font-icons'
+  fonts: {
+    src: node_modules + '/bootstrap/fonts/**',
+    dest: dest + '/fonts'
   },
   browserify: {
     // Enable source maps
@@ -34,9 +40,9 @@ module.exports = {
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
-      entries: src + '/app/app.jsx',
+      entries: src + '/js/app.jsx',
       dest: dest,
-      outputName: 'app.js'
+      outputName: 'js/app.js'
     }]
   },
   uglify: {

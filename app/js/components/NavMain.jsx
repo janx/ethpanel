@@ -26,7 +26,7 @@ module.exports = React.createClass({
     ]);
 
     return (
-      <Navbar brand={brand} fluid inverse fixedTop toggleNavKey={0}>
+      <Navbar brand={brand} inverse fixedTop toggleNavKey={0}>
         <CollapsibleNav eventKey={0}>
           <Nav navbar>
             {links}

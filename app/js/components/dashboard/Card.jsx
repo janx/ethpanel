@@ -1,6 +1,8 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
+var { Panel, ListGroup, ListGroupItem } = require('react-bootstrap');
+
 var Card = React.createClass({
 
   propTypes: {
@@ -9,32 +11,18 @@ var Card = React.createClass({
   },
 
   render: function() {
-    var rows = this.props.items.map(function(item) {
-      var body = item.body ? <p>{item.body}</p> : '';
-
+    var items = this.props.items.map(function(item) {
       return (
-        <tr key={item.name}>
-          <td className='component-info-name'>{item.name}</td>
-          <td className='component-info-desc'>
-            <p className='component-info-header'>
-              <span className='component-info-type'>{item.type}</span>
-              <span>{item.text}</span>
-            </p>
-            {body}
-          </td>
-        </tr>
+        <ListGroupItem key={item.name} header={item.text}>{item.name}</ListGroupItem>
       );
     });
 
     return (
-      <div className="card component-info">
-        <h3 className="mui-font-style-title">{this.props.title}</h3>
-        <table>
-          <tbody>
-            {rows}
-          </tbody>
-        </table>
-      </div>
+      <Panel collapsible defaultExpanded header={this.props.title}>
+        <ListGroup fill>
+          {items}
+        </ListGroup>
+      </Panel>
     );
   }
 

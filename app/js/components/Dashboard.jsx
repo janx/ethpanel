@@ -1,6 +1,8 @@
 var React = require('react');
 var { RouteHandler } = require('react-router');
 
+var { Grid, Row, Col } = require('react-bootstrap');
+
 /*
  * React Helpers
  */
@@ -78,12 +80,20 @@ module.exports = React.createClass({
     var body;
     if( this.state ) {
       body = (
-        <div>
-          <Network {...this.state.network} />
-          <Mining {...this.state.mining} />
-          <MyAccounts default={this.state.defaultAccount} coinbase={this.state.mining.coinbase} accounts={this.state.accounts} />
-          <Blocks blocks={this.state.blocks} />
-        </div>
+        <Grid>
+          <Row>
+            <Col md={4}>
+              <Row> <Network {...this.state.network} /> </Row>
+              <Row> <Mining {...this.state.mining} /> </Row>
+            </Col>
+            <Col md={4}>
+              <MyAccounts default={this.state.defaultAccount} coinbase={this.state.mining.coinbase} accounts={this.state.accounts} />
+            </Col>
+            <Col md={4}>
+              <Blocks blocks={this.state.blocks} />
+            </Col>
+          </Row>
+        </Grid>
       );
     } else {
       body = (

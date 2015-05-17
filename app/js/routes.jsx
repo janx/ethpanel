@@ -1,6 +1,6 @@
 var React = require('react');
 
-var { Route, DefaultRoute } = require('react-router');
+var { Route, DefaultRoute, Redirect } = require('react-router');
 
 var Root = require('./components/Root');
 var Node = require('./components/Node');
@@ -13,5 +13,7 @@ module.exports = (
       <Route name='blocks' path='blocks' handler={Blocks} />
       <Route name='dashboard' path=':id' handler={Dashboard} />
     </Route>
+
+    <Redirect from='/' to='/nodes/localhost@8545' />
   </Route>
 );

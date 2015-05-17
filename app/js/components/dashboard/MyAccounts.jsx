@@ -1,6 +1,8 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
+var { Table } = require('react-bootstrap');
+
 var MyAccountItem = require('./MyAccountItem');
 
 var MyAccounts = React.createClass({
@@ -32,20 +34,20 @@ var MyAccounts = React.createClass({
     }
 
     return (
-      <div className="card component-info accounts">
-        <h3 className='mui-font-style-title'>My Accounts</h3>
-        <table className='table'>
+      <div className='accounts'>
+        <h3>Accounts</h3>
+        <Table hover>
           <thead>
             <tr>
               <th className='address'>Address</th>
-              <th className='mark'></th>
+              <th className='icons'></th>
               <th className='balance'>Balance (ethers)</th>
             </tr>
+            <tbody>
+              {items}
+            </tbody>
           </thead>
-          <tbody>
-            {items}
-          </tbody>
-        </table>
+        </Table>
       </div>
     );
   }

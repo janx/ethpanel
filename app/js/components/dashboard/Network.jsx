@@ -1,7 +1,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
-var Card = require('./Card');
+var StatButtons = require('./StatButtons');
 
 var Network = React.createClass({
 
@@ -17,7 +17,7 @@ var Network = React.createClass({
     ];
 
     return (
-      <Card title={'Network'} items={items} />
+      <StatButtons title={'Network'} items={items} buttonStyle='info' />
     );
   }
 

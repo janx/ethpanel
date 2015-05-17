@@ -82,14 +82,20 @@ module.exports = React.createClass({
       body = (
         <Grid>
           <Row>
-            <Col md={4}>
-              <Row> <Network {...this.state.network} /> </Row>
-              <Row> <Mining {...this.state.mining} /> </Row>
+            <Col md={12}>
+              <Network {...this.state.network} />
             </Col>
-            <Col md={4}>
+          </Row>
+          <Row>
+            <Col md={12}>
+              <Mining {...this.state.mining} />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
               <MyAccounts default={this.state.defaultAccount} coinbase={this.state.mining.coinbase} accounts={this.state.accounts} />
             </Col>
-            <Col md={4}>
+            <Col md={6}>
               <Blocks blocks={this.state.blocks} />
             </Col>
           </Row>

@@ -1,7 +1,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
-var Card = require('./Card');
+var StatButtons = require('./StatButtons');
 var PrettyPrint = require('../../utils/PrettyPrintUtils');
 
 var Mining = React.createClass({
@@ -25,7 +25,7 @@ var Mining = React.createClass({
     ];
 
     return (
-      <Card title={'Mining'} items={items} />
+      <StatButtons title={'Mining'} items={items} buttonStyle='danger' />
     );
   }
 

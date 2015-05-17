@@ -1,5 +1,8 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
+
+var { Table } = require('react-bootstrap');
+
 var BlockItem = require('./BlockItem');
 
 var Blocks = React.createClass({
@@ -28,9 +31,9 @@ var Blocks = React.createClass({
     });
 
     return (
-      <div className="card component-info blocks">
-        <h3 className='mui-font-style-title'>Last {this.props.limit} Blocks</h3>
-        <table className='table'>
+      <div className="blocks">
+        <h3>Last {this.props.limit} Blocks</h3>
+        <Table hover>
           <thead>
             <tr>
               <th className='number'>Number</th>
@@ -42,7 +45,7 @@ var Blocks = React.createClass({
           <tbody>
             {items}
           </tbody>
-        </table>
+        </Table>
       </div>
     );
   }

@@ -15,28 +15,26 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var brand = <Link to='root' className='navbar-brand'>EthPanel</Link>;
-    var links = Object.keys(_links).map(this._renderNavItem).concat([
+    var brand = <Link to='dashboard' params={this.props.node} className='navbar-brand'>{this._nodeName(this.props.node)}</Link>;
+
+    var leftLinks = Object.keys(_links).map(this._renderNavItem)
+    var rightLinks = [
       <li key='stats-link'>
         <a href='https://stats.ethdev.com' target='_blank'>Stats</a>
       </li>,
       <li key='github-link'>
-        <a href='https://github.com/janx/ethpanel' target='_blank'>Github</a>
+        <a href='https://github.com/janx/ethpanel' target='_blank'>EthPanel</a>
       </li>
-    ]);
+    ];
 
     return (
       <Navbar brand={brand} inverse fixedTop toggleNavKey={0}>
         <CollapsibleNav eventKey={0}>
           <Nav navbar>
-            {links}
+            {leftLinks}
           </Nav>
           <Nav navbar right>
-            <li>
-              <Link to='dashboard' params={this.props.node}>
-                {this._nodeName(this.props.node)}
-              </Link>
-            </li>
+            {rightLinks}
           </Nav>
         </CollapsibleNav>
       </Navbar>

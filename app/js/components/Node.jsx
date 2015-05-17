@@ -17,7 +17,6 @@ module.exports = React.createClass({
       <div>
         <NavMain node={this.state.node} />
         <RouteHandler node={this.state.node} />
-        <Footer />
       </div>
     );
   }

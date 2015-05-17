@@ -13,9 +13,8 @@ var EthWebAPIUtils = require('../utils/EthWebAPIUtils');
  * React Components
  */
 var Blocks = require('./dashboard/Blocks');
-var Network = require('./dashboard/Network');
-var Mining = require('./dashboard/Mining');
 var MyAccounts = require('./dashboard/MyAccounts');
+var Stats = require('./dashboard/Stats');
 
 /*
  * React Stores
@@ -80,17 +79,7 @@ module.exports = React.createClass({
     var body;
     if( this.state ) {
       body = (
-        <Grid>
-          <Row>
-            <Col md={12}>
-              <Network {...this.state.network} />
-            </Col>
-          </Row>
-          <Row>
-            <Col md={12}>
-              <Mining {...this.state.mining} />
-            </Col>
-          </Row>
+        <Grid className='dashboard'>
           <Row>
             <Col md={6}>
               <MyAccounts default={this.state.defaultAccount} coinbase={this.state.mining.coinbase} accounts={this.state.accounts} />
@@ -99,6 +88,7 @@ module.exports = React.createClass({
               <Blocks blocks={this.state.blocks} />
             </Col>
           </Row>
+          <Stats network={this.state.network} mining={this.state.mining} />
         </Grid>
       );
     } else {

@@ -4,15 +4,13 @@ var { RouteHandler } = require('react-router');
 var NavMain = require('./NavMain');
 var Footer = require('./Footer');
 
+var NodeUtils = require('../utils/NodeUtils');
+
 module.exports = React.createClass({
 
   componentWillMount: function() {
-    var node = this.props.params.id.split('@');
     this.setState({
-      node: {
-        host: node[0],
-        port: node[1]
-      }
+      node: NodeUtils.getNode(this.props.params.id)
     });
   },
 

@@ -7,6 +7,7 @@ var { Grid, Row, Col } = require('react-bootstrap');
  * React Helpers
  */
 var EthServerActionCreators = require('../actions/EthServerActionCreators');
+var PollerActionCreators = require('../actions/PollerActionCreators');
 var EthWebAPIUtils = require('../utils/EthWebAPIUtils');
 
 /*
@@ -22,26 +23,6 @@ var Stats = require('./dashboard/Stats');
 var BlockStore = require('../stores/BlockStore');
 var StatsStore = require('../stores/StatsStore');
 var AccountStore = require('../stores/AccountStore');
-
-var _url, _poller;
-
-function startPolling(node) {
-  console.log("start watching ...");
-
-  _url = "http://" + node.host + ':' + node.port;
-  EthServerActionCreators.receiveLatestStates(EthWebAPIUtils.getLatestStates(_url));
-
-  _poller = window.setInterval(function() {
-    EthServerActionCreators.receiveLatestStates(EthWebAPIUtils.getLatestStates(_url));
-  }, 2000);
-}
-
-function stopPolling() {
-  console.log("stop watching ...");
-
-  window.clearInterval(_poller);
-  _poller = _url = undefined;
-}
 
 function getStatesFromStores() {
   return {
@@ -64,7 +45,7 @@ module.exports = React.createClass({
     StatsStore.addChangeListener(this._onChange);
     AccountStore.addChangeListener(this._onChange);
 
-    startPolling(this.props.node);
+    PollerActionCreators.startPolling(this.props.node, 2000);
   },
 
   componentWillUnmount: function() {
@@ -72,7 +53,7 @@ module.exports = React.createClass({
     StatsStore.removeChangeListener(this._onChange);
     AccountStore.removeChangeListener(this._onChange);
 
-    stopPolling();
+    PollerActionCreators.stopPolling();
   },
 
   render: function() {

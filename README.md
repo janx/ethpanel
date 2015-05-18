@@ -6,15 +6,15 @@ EthPanel is designed to be a lightweight, full functional, and browser only app.
 
 ![screenshot](https://github.com/janx/ethpanel/raw/master/screenshot.png)
 
-EthPanel is still in its early stage, before alpha release. If you want any specific function or have an idea, please create a issue.
+EthPanel is still in its early stage. If you want any specific function or have an idea, please create an issue.
 
 ## Run
 
 EthPanel communicates with ethereum node through json rpc, so make sure your node enabled json rpc and allowed [cross-origin resource sharing](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing):
 
-    geth --rpc --rpccorsdomain "*"
+    geth --rpc --rpccorsdomain "http://janx.github.io"
 
-'*' will allow ajax request from any domain. You can set it to a more specific domain, e.g. `http://localhost:8080`.
+This will allow the EthPanel hosted on http://janx.github.io/ethpanel to access your node.
 
 By default EthPanel suppose the node is listening http://localhost:8545 for json rpc request.
 

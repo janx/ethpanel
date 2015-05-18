@@ -8,8 +8,17 @@ var ActionTypes = AppConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
 var _stats = {
-  net: {},
-  mining: {}
+  net: {
+    listening: false,
+    peerCount: 0
+  },
+  mining: {
+    mining: false,
+    coinbase: '',
+    coinbaseBalance: null,
+    hashrate: null,
+    gasPrice: null
+  }
 };
 
 var StatsStore = assign({}, EventEmitter.prototype, {

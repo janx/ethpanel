@@ -18,10 +18,6 @@ var Blocks = React.createClass({
     blocks: PropTypes.array.isRequired
   },
 
-  shouldComponentUpdate: function(nextProps, nextState) {
-    return nextProps.blocks[0].number > this.props.blocks[0].number;
-  },
-
   render: function() {
     var items = [];
     var blocks = this.props.blocks.slice(0, this.props.limit);

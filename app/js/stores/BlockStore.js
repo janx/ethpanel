@@ -7,7 +7,7 @@ var ActionTypes = AppConstants.ActionTypes;
 
 var CHANGE_EVENT = 'change';
 
-var _blocks = null;
+var _blocks = [];
 
 var BlockStore = assign({}, EventEmitter.prototype, {
 

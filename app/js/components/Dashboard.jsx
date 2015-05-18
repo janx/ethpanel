@@ -56,7 +56,7 @@ function getStatesFromStores() {
 module.exports = React.createClass({
 
   getInitialState: function() {
-    return null;
+    return getStatesFromStores();
   },
 
   componentDidMount: function() {
@@ -76,28 +76,19 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var body;
-    if( this.state ) {
-      body = (
-        <Grid className='dashboard'>
-          <Row>
-            <Col md={6}>
-              <MyAccounts default={this.state.defaultAccount} coinbase={this.state.mining.coinbase} accounts={this.state.accounts} />
-            </Col>
-            <Col md={6}>
-              <Blocks blocks={this.state.blocks} />
-            </Col>
-          </Row>
-          <Stats network={this.state.network} mining={this.state.mining} />
-        </Grid>
-      );
-    } else {
-      body = (
-        <h1>Loading ...</h1>
-      );
-    }
-
-    return body;
+    return (
+      <Grid className='dashboard'>
+        <Row>
+          <Col md={6}>
+            <MyAccounts default={this.state.defaultAccount} coinbase={this.state.mining.coinbase} accounts={this.state.accounts} />
+          </Col>
+          <Col md={6}>
+            <Blocks blocks={this.state.blocks} />
+          </Col>
+        </Row>
+        <Stats network={this.state.network} mining={this.state.mining} />
+      </Grid>
+    );
   },
 
   _onChange: function() {

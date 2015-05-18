@@ -2,6 +2,8 @@ var React = require('react');
 var { Link } = require('react-router');
 var { Navbar, CollapsibleNav, Nav, NavItem } = require('react-bootstrap');
 
+var PrettyPrintUtils = require('../utils/PrettyPrintUtils');
+
 var _links = {
   'blocks': {
     link: 'blocks',
@@ -15,7 +17,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var brand = <Link to='dashboard' params={this.props.node} className='navbar-brand'>{this._nodeName(this.props.node)}</Link>;
+    var brand = <Link to='dashboard' params={this.props.node} className='navbar-brand'>{PrettyPrintUtils.nodeName(this.props.node)}</Link>;
 
     var leftLinks = Object.keys(_links).map(this._renderNavItem)
     var rightLinks = [
@@ -49,14 +51,6 @@ module.exports = React.createClass({
         <Link to={link.link}>{link.title}</Link>
       </li>
     );
-  },
-
-  _nodeName: function(node) {
-    if(node) {
-      return node.host + ':' + node.port;
-    } else {
-      return '';
-    }
   }
 
 });

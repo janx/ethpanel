@@ -13,6 +13,7 @@ var EthWebAPIUtils = require('../utils/EthWebAPIUtils');
 /*
  * React Components
  */
+var ConnectionStatus = require('./dashboard/ConnectionStatus');
 var Blocks = require('./dashboard/Blocks');
 var MyAccounts = require('./dashboard/MyAccounts');
 var Stats = require('./dashboard/Stats');
@@ -23,6 +24,7 @@ var Stats = require('./dashboard/Stats');
 var BlockStore = require('../stores/BlockStore');
 var StatsStore = require('../stores/StatsStore');
 var AccountStore = require('../stores/AccountStore');
+var PollerStore = require('../stores/PollerStore');
 
 function getStatesFromStores() {
   return {
@@ -30,7 +32,8 @@ function getStatesFromStores() {
     accounts: AccountStore.getAll(),
     blocks: BlockStore.getAll(),
     network: StatsStore.getNetwork(),
-    mining: StatsStore.getMining()
+    mining: StatsStore.getMining(),
+    poller: PollerStore.getStatus()
   };
 }
 
@@ -44,6 +47,7 @@ module.exports = React.createClass({
     BlockStore.addChangeListener(this._onChange);
     StatsStore.addChangeListener(this._onChange);
     AccountStore.addChangeListener(this._onChange);
+    PollerStore.addChangeListener(this._onChange);
 
     PollerActionCreators.startPolling(this.props.node, 2000);
   },
@@ -52,6 +56,7 @@ module.exports = React.createClass({
     BlockStore.removeChangeListener(this._onChange);
     StatsStore.removeChangeListener(this._onChange);
     AccountStore.removeChangeListener(this._onChange);
+    PollerStore.removeChangeListener(this._onChange);
 
     PollerActionCreators.stopPolling();
   },
@@ -59,6 +64,7 @@ module.exports = React.createClass({
   render: function() {
     return (
       <Grid className='dashboard'>
+        <ConnectionStatus node={this.props.node} poller={this.state.poller} />
         <Row>
           <Col md={6}>
             <MyAccounts default={this.state.defaultAccount} coinbase={this.state.mining.coinbase} accounts={this.state.accounts} />

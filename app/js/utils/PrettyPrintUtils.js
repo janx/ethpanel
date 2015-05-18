@@ -18,5 +18,13 @@ module.exports = {
 
   time: function(timestamp) {
     return moment.unix(timestamp).format("HH:mm:ss");
+  },
+
+  nodeName: function(node) {
+    if(node) {
+      return node.host + ':' + node.port;
+    } else {
+      return '';
+    }
   }
 };

@@ -1,30 +1,49 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var ActionTypes   = require('../constants/AppConstants').ActionTypes;
 
-var PollerUtils = require('../utils/PollerUtils');
+var EthServerActionCreators = require('../actions/EthServerActionCreators');
+var EthWebAPIUtils = require('../utils/EthWebAPIUtils');
+
+var _url, _poller;
+
+function _poll() {
+  try {
+    EthServerActionCreators.receiveLatestStates(EthWebAPIUtils.getLatestStates(_url));
+
+    AppDispatcher.dispatch({
+      type: ActionTypes.POLLER_RECEIVED_SUCCESS
+    });
+  } catch(e) {
+    console.log(e);
+
+    AppDispatcher.dispatch({
+      type: ActionTypes.POLLER_RECEIVED_FAILURE,
+      error: e
+    });
+  }
+}
 
 var PollerActionCreators = {
 
   startPolling: function(node, interval) {
-    try {
-      PollerUtils.startPolling(node, interval);
+    console.log("start watching ...");
 
-      AppDispatcher.dispatch({
-        type: ActionTypes.POLLER_START_SUCCESS
-      });
-    } catch (e) {
-      console.log(e);
-      console.log(e.stack);
-
-      AppDispatcher.dispatch({
-        type: ActionTypes.POLLER_START_ERROR,
-        error: e
-      });
+    if(_poller) {
+      throw "there's already a running watcher!";
+    } else {
+      _url = "http://" + node.host + ':' + node.port;
+      _poll()
+      _poller = window.setInterval(_poll, interval);
     }
   },
 
   stopPolling: function() {
-    PollerUtils.stopPolling();
+    console.log("stop watching ...");
+
+    if(_poller) {
+      window.clearInterval(_poller);
+      _poller = _url = undefined;
+    }
 
     AppDispatcher.dispatch({
       type: ActionTypes.POLLER_STOPPED

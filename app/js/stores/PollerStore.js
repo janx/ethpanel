@@ -31,13 +31,13 @@ var PollerStore = assign({}, EventEmitter.prototype, {
 
 PollerStore.dispatchToken = AppDispatcher.register(function(action) {
   switch(action.type) {
-    case ActionTypes.POLLER_START_SUCCESS:
-      _status = 'started';
+    case ActionTypes.POLLER_RECEIVED_SUCCESS:
+      _status = 'success';
       _error = null;
       PollerStore.emitChange();
       break;
-    case ActionTypes.POLLER_START_ERROR:
-      _status = 'error';
+    case ActionTypes.POLLER_RECEIVED_FAILURE:
+      _status = 'failure';
       _error = action.error;
       PollerStore.emitChange();
       break;

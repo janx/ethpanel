@@ -7,8 +7,8 @@ module.exports = {
 
   ActionTypes: keyMirror({
     RECEIVE_LATEST_STATES: null,
-    POLLER_START_SUCCESS: null,
-    POLLER_START_ERROR: null,
+    POLLER_RECEIVED_SUCCESS: null,
+    POLLER_RECEIVED_FAILURE: null,
     POLLER_STOPPED: null
   })
 

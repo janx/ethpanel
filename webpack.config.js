@@ -8,8 +8,15 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, loaders: ['babel'] },
-      { test: /\.json$/, loaders: ['json']  }
+      { test: /\.jsx?$/,                   loader: 'babel' },
+      { test: /\.json$/,                   loader: 'json'  },
+
+      { test: /\.css$/,                    loader: 'style!css' },
+      { test: /\.less$/,                   loader: 'style!css!less' },
+
+      { test: /\.(png|jpg|jpeg|gif|svg)$/, loader: 'url-loader?limit=10000' },
+      { test: /\.(woff|woff2)$/,           loader: 'url-loader?limit=100000' },
+      { test: /\.(ttf|eot)$/,              loader: 'file-loader' }
     ]
   },
   resolve: {

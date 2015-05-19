@@ -1,4 +1,6 @@
 (function () {
+  require('bootstrap/less/bootstrap.less');
+
   var React = require('react');
   var Router = require('react-router');
 

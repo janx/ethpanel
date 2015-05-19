@@ -20,6 +20,7 @@
   "scripts": {
     "start": "gulp",
     "build": "webpack --progress --colors",
+    "server": "webpack-dev-server --progress --colors",
     "release": "gulp release"
   },
   "browserify": {

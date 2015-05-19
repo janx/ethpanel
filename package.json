@@ -49,7 +49,6 @@
     "gulp-sourcemaps": "^1.5.2",
     "gulp-util": "^3.0.4",
     "highlight.js": "^8.5.0",
-    "jest": "^0.1.39",
     "json-loader": "^0.5.1",
     "keymirror": "^0.1.1",
     "less": "^2.5.0",

@@ -8,7 +8,8 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'build'),
-    filename: "js/[name].js"
+    filename: "js/[name]-[chunkhash].js",
+    chunkFilename: "js/[id]-[chunkhash].js"
   },
   module: {
     loaders: [
@@ -27,7 +28,7 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   plugins: [
-    new ExtractTextPlugin("css/[name].css", {
+    new ExtractTextPlugin("css/[name]-[contenthash].css", {
       allChunks: true
     }),
     new HtmlWebpackPlugin({

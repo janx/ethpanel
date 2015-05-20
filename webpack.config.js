@@ -1,16 +1,21 @@
+var path = require('path');
+var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  devtool: 'eval',
   entry: [
+    "webpack-dev-server/client?http://localhost:8080",
+    "webpack/hot/only-dev-server",
     "./app/js/app.jsx"
   ],
   output: {
-    path: "./build/js",
+    path: path.join(__dirname, 'build', 'js'),
     filename: "[name].js"
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/,                   loader: 'babel', exclude: /node_modules/ },
+      { test: /\.jsx?$/,                   loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
       { test: /\.json$/,                   loader: 'json'  },
 
       { test: /\.css$/,                    loader: 'style!css' },
@@ -28,6 +33,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './app/index.html',
       inject: true
-    })
-  ]
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
+  devServer: {
+    hot: true,
+    historyApiFallback: true
+  }
 };

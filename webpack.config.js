@@ -1,14 +1,11 @@
 var path = require('path');
-var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval',
-  entry: [
-    "webpack-dev-server/client?http://localhost:8080",
-    "webpack/hot/only-dev-server",
-    "./app/js/app.jsx"
-  ],
+  entry: {
+    app: [ "./app/js/app.jsx" ]
+  },
   output: {
     path: path.join(__dirname, 'build', 'js'),
     filename: "[name].js"
@@ -33,12 +30,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './app/index.html',
       inject: true
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ],
-  devServer: {
-    hot: true,
-    historyApiFallback: true
-  }
+    })
+  ]
 };

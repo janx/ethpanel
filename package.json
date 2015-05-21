@@ -21,16 +21,6 @@
     "start": "webpack-dev-server --config webpack.dev.js --progress --colors",
     "build": "webpack --progress --colors -p"
   },
-  "browserify": {
-    "transform": [
-      [
-        "reactify",
-        {
-          "es6": true
-        }
-      ]
-    ]
-  },
   "devDependencies": {
     "bootstrap": "^3.3.4",
     "classnames": "^2.1.1",

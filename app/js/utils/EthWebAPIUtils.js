@@ -23,7 +23,13 @@ module.exports = {
   getBlocks: function(current, last) {
     var blocks = [];
     for(;current <= last;current++) {
-      blocks.unshift(web3.eth.getBlock(current, false));
+      var block = web3.eth.getBlock(current, false);
+      if (block) {
+        blocks.unshift(web3.eth.getBlock(current, false));
+      } else {
+        blocks.unshift({number: current, timestamp: 0, hash: '0xN/A', transactions: []});
+        console.log("error: no data for block " + current + "!");
+      }
     }
     return blocks;
   },

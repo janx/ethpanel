@@ -45,7 +45,7 @@
     "reactify": "^1.1.0",
     "style-loader": "^0.12.2",
     "url-loader": "^0.5.5",
-    "web3": "^0.4.3",
+    "web3": "^0.5.0",
     "webpack": "^1.9.7",
     "webpack-dev-server": "^1.8.2"
   }

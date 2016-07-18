@@ -8,8 +8,8 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'build'),
-    filename: "js/[name]-[chunkhash].js",
-    chunkFilename: "js/[id]-[chunkhash].js"
+    filename: "js/[name]-[hash].js",
+    chunkFilename: "js/[id]-[hash].js"
   },
   module: {
     loaders: [
